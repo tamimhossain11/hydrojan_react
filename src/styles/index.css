@@ -29,3 +29,23 @@ body {
   }
 }
 
+/*animated water*/
+
+.animated-water {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, #004466, #001f3f);
+  animation: waveMotion 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes waveMotion {
+  0%, 100% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 48% 52%;
+  }
+}
+
+
