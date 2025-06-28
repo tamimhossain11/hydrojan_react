@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #001f3f;
+  overflow-x: hidden;
+}
+
+.water-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 50%, #004466, #001f3f);
+  animation: waterAnimation 8s ease-in-out infinite;
+}
+
+@keyframes waterAnimation {
+  0%, 100% {
+    background-position: center top;
+  }
+  50% {
+    background-position: center bottom;
+  }
+}
+
+.social-share {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-share a, .social-share button {
+  color: #555;
+  font-size: 18px;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.social-share a:hover, .social-share button:hover {
+  color: #0077b5; /* LinkedIn blue */
+}
+
+.social-share a:nth-child(1):hover {
+  color: #1da1f2; /* Twitter blue */
+}
+
+.social-share a:nth-child(3):hover {
+  color: #4267b2; /* Facebook blue */
+}
