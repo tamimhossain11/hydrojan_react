@@ -37,6 +37,8 @@ Thumbs.db
 # IDE settings
 .vscode/
 .idea/
+# demo
+.changes
 
 # Optional: OS-specific
 *.swp
