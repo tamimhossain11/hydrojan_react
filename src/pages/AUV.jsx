@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Team = () => {
+const AUV = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const Team = () => {
   )
 }
 
-export default Team
+export default AUV
