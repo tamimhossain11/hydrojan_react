@@ -58,7 +58,7 @@ const BlogOne = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog1one.jpg"
+          src="/Image/blog1one.jpg"
           alt="HydroJan 0.1 "
           className="object-cover w-full h-full"
         />
