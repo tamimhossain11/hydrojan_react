@@ -2,6 +2,93 @@ import React, { useState, useCallback } from 'react';
 import { MapPin, Phone, Mail, Copyright, Globe, Instagram, Youtube, Droplet, 
          BrainCircuit, FlaskConical, Microscope } from 'lucide-react';
 
+// Responsive, robust wave styles
+const waveStyles = `
+@keyframes waveMove1 { 100% { transform: translateX(-50%); } }
+@keyframes waveMove2 { 100% { transform: translateX(-60%); } }
+@keyframes waveMove3 { 100% { transform: translateX(-40%); } }
+@keyframes waveMove4 { 100% { transform: translateX(-55%); } }
+@keyframes waveMove5 { 100% { transform: translateX(-45%); } }
+
+.footer-waves {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  min-height: 110px;
+  height: 110px;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.wave {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 200vw;
+  min-width: 200%;
+  height: 100%;
+  transform: translateX(0);
+  will-change: transform;
+}
+.wave1 {
+  z-index: 6;
+  opacity: 0.8;
+  animation: waveMove1 18s linear infinite;
+}
+.wave2 {
+  z-index: 5;
+  opacity: 0.6;
+  animation: waveMove2 30s linear infinite reverse;
+  bottom: 10px;
+}
+.wave3 {
+  z-index: 4;
+  opacity: 0.5;
+  animation: waveMove3 40s linear infinite;
+  bottom: 20px;
+}
+.wave4 {
+  z-index: 3;
+  opacity: 0.38;
+  animation: waveMove4 55s linear infinite reverse;
+  bottom: 30px;
+}
+.wave5 {
+  z-index: 2;
+  opacity: 0.25;
+  animation: waveMove5 80s linear infinite;
+  bottom: 35px;
+  filter: blur(2px);
+}
+`;
+
+const waveDefs = (
+  <defs>
+    <linearGradient id="waveblue1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#38bdf8" />
+      <stop offset="80%" stopColor="#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="waveblue2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#22d3ee" />
+      <stop offset="100%" stopColor="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="waveblue3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#60a5fa" />
+      <stop offset="100%" stopColor="#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="waveblue4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#0ea5e9" />
+      <stop offset="100%" stopColor="#818cf8" />
+    </linearGradient>
+    <linearGradient id="waveblue5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stopColor="#1e3a8a" />
+      <stop offset="100%" stopColor="#0ea5e9" />
+    </linearGradient>
+  </defs>
+);
+
 const Footer = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -48,8 +135,10 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="bg-[#0a1128] text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-blue-900/50">
-      <div className="max-w-7xl mx-auto">
+    <footer className="relative bg-[#0a1128] text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-blue-900/50 overflow-hidden">
+      <style>{waveStyles}</style>
+
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           {/* Branding Section */}
@@ -158,12 +247,11 @@ const Footer = () => {
         </div>
 
         {/* Copyright Bar */}
-        <div className="border-t border-blue-900/50 pt-6 flex flex-col sm:flex-row justify-between items-center">
+        <div className="border-t border-blue-900/50 pt-6 flex flex-col sm:flex-row justify-between items-center relative z-20">
           <div className="flex items-center gap-2 text-blue-300 mb-4 sm:mb-0">
             <Copyright size={16} />
             <span>Copyright 2021-2025 DREAMS OF BANGLADESH | HydroJan. All Rights Reserved.</span>
           </div>
-          
           <div className="flex gap-4">
             <a href="#" className="text-blue-300 hover:text-blue-400 transition-colors text-sm">
               Terms of Service
@@ -173,6 +261,75 @@ const Footer = () => {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Water Waves (Parallax, 5 layers) */}
+      <div className="footer-waves">
+        {/* Layer 1 */}
+        <svg className="wave wave1" viewBox="0 0 1440 110" fill="none">
+          {waveDefs}
+          <path
+            fill="url(#waveblue1)"
+            d="M0 80C120 120 400 40 720 80C1040 120 1320 40 1440 80V110H0V80Z"
+          />
+          <path
+            fill="url(#waveblue1)"
+            d="M1440 80C120 120 400 40 720 80C1040 120 1320 40 0 80V110H1440V80Z"
+            style={{ transform: 'translateX(1440px)', pointerEvents: 'none' }}
+          />
+        </svg>
+        {/* Layer 2 */}
+        <svg className="wave wave2" viewBox="0 0 1440 110" fill="none">
+          {waveDefs}
+          <path
+            fill="url(#waveblue2)"
+            d="M0 70C200 110 500 30 900 70C1300 110 1500 30 1440 70V110H0V70Z"
+          />
+          <path
+            fill="url(#waveblue2)"
+            d="M1440 70C200 110 500 30 900 70C1300 110 1500 30 0 70V110H1440V70Z"
+            style={{ transform: 'translateX(1440px)', pointerEvents: 'none' }}
+          />
+        </svg>
+        {/* Layer 3 */}
+        <svg className="wave wave3" viewBox="0 0 1440 110" fill="none">
+          {waveDefs}
+          <path
+            fill="url(#waveblue3)"
+            d="M0 90C300 120 600 60 1100 90C1600 120 1800 60 1440 90V110H0V90Z"
+          />
+          <path
+            fill="url(#waveblue3)"
+            d="M1440 90C300 120 600 60 1100 90C1600 120 1800 60 0 90V110H1440V90Z"
+            style={{ transform: 'translateX(1440px)', pointerEvents: 'none' }}
+          />
+        </svg>
+        {/* Layer 4 */}
+        <svg className="wave wave4" viewBox="0 0 1440 110" fill="none">
+          {waveDefs}
+          <path
+            fill="url(#waveblue4)"
+            d="M0 95C350 110 600 75 1050 95C1500 115 1700 75 1440 95V110H0V95Z"
+          />
+          <path
+            fill="url(#waveblue4)"
+            d="M1440 95C350 110 600 75 1050 95C1500 115 1700 75 0 95V110H1440V95Z"
+            style={{ transform: 'translateX(1440px)', pointerEvents: 'none' }}
+          />
+        </svg>
+        {/* Layer 5 */}
+        <svg className="wave wave5" viewBox="0 0 1440 110" fill="none">
+          {waveDefs}
+          <path
+            fill="url(#waveblue5)"
+            d="M0 108C400 110 700 80 1200 108C1700 136 1800 80 1440 108V110H0V108Z"
+          />
+          <path
+            fill="url(#waveblue5)"
+            d="M1440 108C400 110 700 80 1200 108C1700 136 1800 80 0 108V110H1440V108Z"
+            style={{ transform: 'translateX(1440px)', pointerEvents: 'none' }}
+          />
+        </svg>
       </div>
     </footer>
   );
