@@ -18,7 +18,7 @@ const BlogThree = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog3hero.jpg"
+          src="/Image/blog3hero.jpg"
           alt="HydroJan 0.2 Hero"
           className="object-cover w-full h-full"
         />
@@ -81,7 +81,7 @@ const BlogThree = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog3one.jpg"
+          src="/Image/blog3one.jpg"
           alt="HydroJan 0.3 Hero"
           className="object-cover w-full h-full"
         />
@@ -127,7 +127,7 @@ const BlogThree = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog2two.png"
+          src="/Image/blog2two.png"
           alt="HydroJan 0.3 "
           className="object-cover w-full h-full"
         />
@@ -177,7 +177,7 @@ const BlogThree = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog3three.jpg"
+          src="/Image/blog3three.jpg"
           alt="HydroJan 0.3 "
           className="object-cover w-full h-full"
         />

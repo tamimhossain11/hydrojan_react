@@ -20,7 +20,7 @@ const TeamAdvisors = () => {
             className="rounded-2xl overflow-hidden border-2 border-blue-700 shadow-lg"
           >
             <img
-              src="/public/Image/AdvisonPic.jpg"
+              src="/Image/AdvisonPic.jpg"
               alt="Advisor"
               className="w-full object-cover h-full grayscale hover:grayscale-0 transition-all duration-500"
             />

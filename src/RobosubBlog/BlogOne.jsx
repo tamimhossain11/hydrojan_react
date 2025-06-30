@@ -18,7 +18,7 @@ const BlogOne = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog1hreo.jpg"
+          src="/Image/blog1hreo.jpg"
           alt="HydroJan 0.1 Hero"
           className="object-cover w-full h-full"
         />
@@ -58,7 +58,7 @@ const BlogOne = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog1One.jpg"
+          src="/Image/blog1One.jpg"
           alt="HydroJan 0.1 Hero"
           className="object-cover w-full h-full"
         />
@@ -101,7 +101,7 @@ const BlogOne = () => {
         viewport={{ once: true }}
       >
         <img
-          src="/public/image/blog1two.jpg"
+          src="/image/blog1two.jpg"
           alt="HydroJan Building"
           className="object-cover w-full h-full"
         />
