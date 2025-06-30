@@ -2,9 +2,12 @@
 import { useState, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas, useLoader, useFrame } from '@react-three/fiber';
-import { Float } from '@react-three/drei';
+import { Float, Text3D } from '@react-three/drei';
 import { MapPin, Phone, Mail, Globe, Send } from 'lucide-react';
 import { FaXTwitter, FaInstagram, FaFacebook, FaYoutube } from 'react-icons/fa6';
+import * as THREE from 'three';
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+
 
 const Contact = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
