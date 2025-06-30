@@ -2,11 +2,9 @@
 import { useState, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Canvas, useLoader, useFrame } from '@react-three/fiber';
-import { Float, Text3D } from '@react-three/drei';
+import { Float,  } from '@react-three/drei';
 import { MapPin, Phone, Mail, Globe, Send } from 'lucide-react';
 import { FaXTwitter, FaInstagram, FaFacebook, FaYoutube } from 'react-icons/fa6';
-import * as THREE from 'three';
-import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 
 
 const Contact = () => {
@@ -31,7 +29,7 @@ const Contact = () => {
           <pointLight position={[10, 10, 10]} />
           <Suspense fallback={null}>
             <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
-              <Hydrojan3DText />
+              
             </Float>
           </Suspense>
         </Canvas>
@@ -173,31 +171,7 @@ const Contact = () => {
   );
 };
 
-const Hydrojan3DText = () => {
-  const font = useLoader(FontLoader, '/fonts/helvetiker_regular.typeface.json');
-  return (
-    <group position={[-4.5, 0, 0]} scale={[0.7, 0.7, 0.7]}>
-      <Text3D
-        font={font}
-        size={1.5}
-        height={0.3}
-        curveSegments={12}
-        bevelEnabled
-        bevelSize={0.04}
-        bevelSegments={5}
-        bevelThickness={0.03}
-      >
-        HYDROJAN
-        <meshStandardMaterial
-          color="#22d3ee"
-          metalness={0.3}
-          roughness={0.1}
-          emissive="#0ea5e9"
-          emissiveIntensity={0.5}
-        />
-      </Text3D>
-    </group>
-  );
-};
+
+
 
 export default Contact;
