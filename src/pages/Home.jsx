@@ -1,26 +1,74 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Waves, Droplets, Anchor } from "lucide-react";
+import { Anchor, Droplets, Waves } from "lucide-react";
+import Timeline from "../components/Home/Timeline";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import Goals from "../components/Home/Goals";
 
 export default function Home() {
   const [firstEnded, setFirstEnded] = useState(false);
   const [loopStarted, setLoopStarted] = useState(false);
   const videoRef = useRef(null);
 
-  // When the first play ends, reveal hero content and start infinite loop
+  // Array of words to cycle through in the hero headline
+  const texts = ["Hydrojan", "AUV System", "Underwater Explorer"];
+  const typingSpeed = 150;
+  const erasingSpeed = 100;
+  const pauseBeforeErase = 1500;
+  const pauseBeforeType = 200;
+
+  // Typewriter state
+  const [textIndex, setTextIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
+
+  useEffect(() => {
+    let timer;
+
+    const handleType = () => {
+      const fullText = texts[textIndex];
+      const updated = isDeleting
+        ? fullText.substring(0, displayedText.length - 1)
+        : fullText.substring(0, displayedText.length + 1);
+
+      setDisplayedText(updated);
+
+      if (!isDeleting && updated === fullText) {
+        // Pause at full text, then start erasing
+        timer = setTimeout(() => setIsDeleting(true), pauseBeforeErase);
+      } else if (isDeleting && updated === "") {
+        // Move to next word
+        setIsDeleting(false);
+        setTextIndex((idx) => (idx + 1) % texts.length);
+        timer = setTimeout(handleType, pauseBeforeType);
+        return;
+      } else {
+        // Continue typing or erasing
+        timer = setTimeout(
+          handleType,
+          isDeleting ? erasingSpeed : typingSpeed
+        );
+      }
+    };
+
+    timer = setTimeout(handleType, pauseBeforeType);
+    return () => clearTimeout(timer);
+  }, [displayedText, isDeleting, textIndex]);
+
+  // Video end handler
   const handleVideoEnded = () => {
     setFirstEnded(true);
     setTimeout(() => {
       setLoopStarted(true);
-      // Restart video for looping
       if (videoRef.current) {
         videoRef.current.currentTime = 0;
         videoRef.current.play();
       }
-    }, 250); // Optional: tiny buffer for clean transition
+    }, 250);
   };
 
-  // Features
+  // Feature cards data
   const features = [
     {
       title: "Deep Sea Exploration",
@@ -39,13 +87,12 @@ export default function Home() {
     },
   ];
 
-  // Hero content animation: slow, clean, "from below"
+  // Framer Motion variants
   const contentVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.95, filter: "blur(16px)" },
+    hidden: { opacity: 0, y: 60, filter: "blur(16px)" },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       filter: "blur(0px)",
       transition: {
         duration: 1.25,
@@ -57,21 +104,25 @@ export default function Home() {
     },
   };
   const cardVariants = {
-    hidden: { opacity: 0, y: 48, scale: 0.98, filter: "blur(12px)" },
+    hidden: { opacity: 0, y: 48, filter: "blur(12px)" },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       filter: "blur(0px)",
       transition: { duration: 1, type: "spring", stiffness: 80, damping: 14 },
     },
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0a0b0f]">
-      {/* HERO SECTION with Video BG */}
+    <div className="relative bg-[#0a0b0f]">
+      {firstEnded && (
+        <header className="fixed top-0 left-0 w-full z-50">
+          <Navbar />
+        </header>
+      )}
+
+      {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Video as hero bg */}
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
@@ -83,75 +134,88 @@ export default function Home() {
           onEnded={handleVideoEnded}
           style={{ pointerEvents: "none" }}
         />
-        {/* Soft dark overlay for readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0b0f]/80 to-[#0e1120]/85 z-10" />
 
-        {/* AnimatePresence for HERO CONTENT */}
         <AnimatePresence>
           {firstEnded && (
             <motion.div
-              className="relative z-20 w-full flex flex-col items-center justify-center min-h-screen"
+              className="relative z-20 flex flex-col items-center justify-center text-center px-4 lg:px-0 space-y-4"
               variants={contentVariants}
               initial="hidden"
               animate="visible"
               exit="hidden"
             >
-              {/* Main hero text */}
-              <motion.div variants={cardVariants} className="mb-8">
-                <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-200 text-transparent bg-clip-text text-center drop-shadow-md">
-                  Welcome to Hydrojan
-                </h1>
-                <p className="text-lg md:text-2xl text-blue-100 mt-6 text-center max-w-2xl mx-auto">
-                  Pioneering the future of underwater technology.
-                </p>
-              </motion.div>
+              {/* Static + Dynamic Typewriter */}
+              <motion.h1
+                className="text-4xl md:text-7xl font-extrabold text-blue-100 drop-shadow-md"
+                variants={cardVariants}
+              >
+                <span className="block">Welcome to</span>
+                <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-200 text-transparent bg-clip-text">
+                  {displayedText}
+                  <span className="inline-block animate-blink">|</span>
+                </span>
+              </motion.h1>
 
-              {/* Features row */}
+              {/* Sub-headline */}
+              <motion.p
+                className="text-lg md:text-2xl text-blue-100 max-w-2xl"
+                variants={cardVariants}
+              >
+                Pioneering the future of underwater technology.
+              </motion.p>
+
+              {/* Feature Cards */}
               <motion.div
-                className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-5xl mt-4 mb-12"
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-5xl mt-12"
                 variants={contentVariants}
               >
-                {features.map((feature, i) => (
+                {features.map((f, i) => (
                   <motion.div
                     key={i}
                     variants={cardVariants}
-                    className="bg-white/10 backdrop-blur-[7px] border border-blue-100/20 rounded-2xl shadow-xl flex flex-col items-center p-8 transition-all hover:scale-105 hover:shadow-cyan-300/20 duration-300"
+                    className="h-full bg-white/10 backdrop-blur-[7px] border border-blue-100/20 rounded-2xl shadow-xl flex flex-col items-center p-8 hover:scale-105 hover:shadow-cyan-300/20 transition-all duration-300"
                   >
-                    <div className="mb-3">{feature.icon}</div>
-                    <h3 className="text-xl font-semibold text-cyan-100 mb-1 text-center">
-                      {feature.title}
+                    <div className="mb-4">{f.icon}</div>
+                    <h3 className="text-xl font-semibold text-cyan-100 mb-2">
+                      {f.title}
                     </h3>
                     <p className="text-blue-200/90 text-center">
-                      {feature.description}
+                      {f.description}
                     </p>
                   </motion.div>
                 ))}
-              </motion.div>
-
-              {/* CTA Card */}
-              <motion.div
-                variants={cardVariants}
-                className="w-full max-w-xl bg-white/10 backdrop-blur-[7px] border border-blue-100/20 rounded-2xl shadow-lg flex flex-col items-center p-8 mb-2"
-              >
-                <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-cyan-200 mb-3 text-center">
-                  Our Mission
-                </h2>
-                <p className="text-blue-100 text-center mb-6">
-                  Innovating the underwater world with sustainable solutions that push the boundaries of
-                  marine exploration while preserving our precious ocean ecosystems.
-                </p>
-                <motion.button
-                  className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold shadow-lg shadow-cyan-500/20 transition-all duration-300"
-                  whileHover={{ scale: 1.07 }}
-                >
-                  Explore Our Technology
-                  <ArrowRight className="inline ml-2" size={22} />
-                </motion.button>
               </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
       </section>
+
+      {/* TIMELINE & GOALS */}
+      {firstEnded && (
+        <>
+          <section className="z-10 pt-24 pb-16 px-4 lg:px-0 bg-[#0a0b0f]">
+            <Timeline />
+          </section>
+          <section className="z-10 pt-24 pb-16 px-4 lg:px-0 bg-[#0a0b0f]">
+            <Goals />
+          </section>
+          <footer className="bg-[#0e1120] py-8">
+            <Footer />
+          </footer>
+        </>
+      )}
+
+      <style jsx>{`
+        .animate-blink {
+          animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+          50% {
+            opacity: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }

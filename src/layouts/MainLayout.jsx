@@ -7,14 +7,14 @@ const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Fixed Navbar */}
-      <header className="fixed top-0 left-0 w-full h-[5vh] z-50">
-        <Navbar />
-      </header>
+      <header className="fixed top-0 left-0 w-full z-50">
+  <Navbar />
+</header>
 
-      {/* Main Content Area */}
-      <main className="flex-grow pt-[10vh]">
-        <Outlet />
-      </main>
+<main className="flex-grow">
+  <Outlet />
+</main>
+
 
       {/* Footer */}
       <footer className=" text-white mt-auto">

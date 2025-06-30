@@ -29,71 +29,74 @@ const App = () => {
 
   // Router configuration
   const router = createBrowserRouter([
-    {
-      path: '/',
-      element: !introComplete ? (
-        <HeroIntro onComplete={() => setIntroComplete(true)} />
-      ) : (
-        <MainLayout />
-      ),
-      children: [
-        {
-          index: true,
-          element: (
-            <Suspense fallback={<LoadingSpinner />}>
-              <SubmarineScene />
-              <Home />
-            </Suspense>
-          )
-        },
-        {
-          path: 'about',
-          element: (
-            <Suspense fallback={<LoadingSpinner />}>
-              <SubmarineScene />
-              <About />
-            </Suspense>
-          )
-        },
-        // Team Routes
-        {
-          path: 'team',
-          children: [
-            { index: true, element: <Suspense fallback={<LoadingSpinner />}><Team /></Suspense> },
-            { path: 'leadership', element: <Suspense fallback={<LoadingSpinner />}><TeamLeadership /></Suspense> },
-            { path: 'departments', element: <Suspense fallback={<LoadingSpinner />}><TeamDepartments /></Suspense> },
-            { path: 'advisors', element: <Suspense fallback={<LoadingSpinner />}><TeamAdvisors /></Suspense> },
-          ]
-        },
-        // Robosuf Routes
-        {
-          path: 'robosub',
-          children: [
-            { index: true, element: <Suspense fallback={<LoadingSpinner />}><Robosuf /></Suspense> },
-            { path: 'blog', element: <Suspense fallback={<LoadingSpinner />}><RobosufBlog /></Suspense> },
-            { path: 'gallery', element: <Suspense fallback={<LoadingSpinner />}><RobosufGallery /></Suspense> },
-            { path: 'media', element: <Suspense fallback={<LoadingSpinner />}><RobosufMedia /></Suspense> },
-          ]
-        },
-        // AUV Routes
-        {
-          path: 'auv',
-          children: [
-            { index: true, element: <Suspense fallback={<LoadingSpinner />}><AUV /></Suspense> },
-            { path: 'hydrojan-01', element: <Suspense fallback={<LoadingSpinner />}><HydroJan01 /></Suspense> },
-            { path: 'hydrojan-02', element: <Suspense fallback={<LoadingSpinner />}><HydroJan02 /></Suspense> },
-            { path: 'hydrojan-03', element: <Suspense fallback={<LoadingSpinner />}><HydroJan03 /></Suspense> },
-            { path: 'hydrojan-10', element: <Suspense fallback={<LoadingSpinner />}><HydroJan10 /></Suspense> },
-          ]
-        },
-        // Other routes
-        { path: 'sponsor', element: <Suspense fallback={<LoadingSpinner />}><Sponsor /></Suspense> },
-        { path: 'contact', element: <Suspense fallback={<LoadingSpinner />}><Contact /></Suspense> },
-        // Fallback route
-        { path: '*', element: <Suspense fallback={<LoadingSpinner />}><Home /></Suspense> }
-      ]
-    }
-  ]);
+  {
+    path: '/',
+    element: !introComplete ? (
+      <HeroIntro onComplete={() => setIntroComplete(true)} />
+    ) : (
+      <Suspense fallback={<LoadingSpinner />}>
+        <SubmarineScene />
+        <Home />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/',
+    element: <MainLayout />,
+    children: [
+      {
+        path: 'about',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <SubmarineScene />
+            <About />
+          </Suspense>
+        )
+      },
+      // Team
+      {
+        path: 'team',
+        children: [
+          { index: true, element: <Suspense fallback={<LoadingSpinner />}><Team /></Suspense> },
+          { path: 'leadership', element: <Suspense fallback={<LoadingSpinner />}><TeamLeadership /></Suspense> },
+          { path: 'departments', element: <Suspense fallback={<LoadingSpinner />}><TeamDepartments /></Suspense> },
+          { path: 'advisors', element: <Suspense fallback={<LoadingSpinner />}><TeamAdvisors /></Suspense> },
+        ]
+      },
+      // Robosub
+      {
+        path: 'robosub',
+        children: [
+          { index: true, element: <Suspense fallback={<LoadingSpinner />}><Robosuf /></Suspense> },
+          { path: 'blog', element: <Suspense fallback={<LoadingSpinner />}><RobosufBlog /></Suspense> },
+          { path: 'gallery', element: <Suspense fallback={<LoadingSpinner />}><RobosufGallery /></Suspense> },
+          { path: 'media', element: <Suspense fallback={<LoadingSpinner />}><RobosufMedia /></Suspense> },
+        ]
+      },
+      // AUV
+      {
+        path: 'auv',
+        children: [
+          { index: true, element: <Suspense fallback={<LoadingSpinner />}><AUV /></Suspense> },
+          { path: 'hydrojan-01', element: <Suspense fallback={<LoadingSpinner />}><HydroJan01 /></Suspense> },
+          { path: 'hydrojan-02', element: <Suspense fallback={<LoadingSpinner />}><HydroJan02 /></Suspense> },
+          { path: 'hydrojan-03', element: <Suspense fallback={<LoadingSpinner />}><HydroJan03 /></Suspense> },
+          { path: 'hydrojan-10', element: <Suspense fallback={<LoadingSpinner />}><HydroJan10 /></Suspense> },
+        ]
+      },
+      { path: 'sponsor', element: <Suspense fallback={<LoadingSpinner />}><Sponsor /></Suspense> },
+      { path: 'contact', element: <Suspense fallback={<LoadingSpinner />}><Contact /></Suspense> },
+    ]
+  },
+  {
+    path: '*',
+    element: (
+      <Suspense fallback={<LoadingSpinner />}>
+        <Home />
+      </Suspense>
+    )
+  }
+]);
 
   return <RouterProvider router={router} />;
 };
