@@ -9,66 +9,100 @@ import {
   Droplet, BrainCircuit, FlaskConical, Microscope
 } from 'lucide-react';
 
-const navItems = [
-  { name: 'Home', href: '/', icon: null },
-  { name: 'About', href: '/about', icon: null },
-  {
-    name: 'Team', href: '/team', icon: <BrainCircuit size={16} />, children: [
-      { name: 'Lead', href: '/team/leadership' },
-      { name: 'Departments', href: '/team/departments' },
-      { name: 'Advisors', href: '/team/advisors' }
-    ]
-  },
-  {
-    name: 'RoboSub', href: '/robosub', icon: <FlaskConical size={16} />, children: [
-      { name: 'Blog', href: '/robosub/blog' },
-      { name: 'Gallery', href: '/robosub/gallery' },
-      { name: 'Media', href: '/robosub/media' }
-    ]
-  },
-  {
-    name: 'AUV', href: '/auv', icon: <Microscope size={16} />, children: [
-      { name: 'HydroJan 0.1', href: '/auv/hydrojan-01' },
-      { name: 'HydroJan 0.2', href: '/auv/hydrojan-02' },
-      { name: 'HydroJan 0.3', href: '/auv/hydrojan-03' },
-      { name: 'HydroJan 1.0', href: '/auv/hydrojan-10' }
-    ]
-  },
-  { name: 'Sponsor', href: '/sponsor', icon: null },
-  { name: 'Contact', href: '/contact', icon: null }
-];
+const Footer = () => {
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const navLinks = [
+    { name: 'Home', href: '/', icon: null },
+    { name: 'About', href: '/about', icon: null },
+    {
+      name: 'Team',
+      href: '/team',
+      icon: <BrainCircuit size={16} />,
+      children: [
+        { name: 'Lead', href: '/team/leadership' },
+        { name: 'Departments', href: '/team/departments' },
+        { name: 'Advisors', href: '/team/advisors' }
+      ]
+    },
+    {
+      name: 'RoboSuf',
+      href: '/robosuf',
+      icon: <FlaskConical size={16} />,
+      children: [
+        { name: 'Blog', href: '/robosuf/blog' },
+        { name: 'Gallery', href: '/robosuf/gallery' },
+        { name: 'Media', href: '/robosuf/media' }
+      ]
+    },
+    {
+      name: 'AUV',
+      href: '/auv',
+      icon: <Microscope size={16} />,
+      children: [
+        { name: 'HydroJan 0.1', href: '/auv/hydrojan-01' },
+        { name: 'HydroJan 0.2', href: '/auv/hydrojan-02' },
+        { name: 'HydroJan 0.3', href: '/auv/hydrojan-03' },
+        { name: 'HydroJan 1.0', href: '/auv/hydrojan-10' }
+      ]
+    },
+    { name: 'Sponsor', href: '/sponsor', icon: null },
+    { name: 'Contact', href: '/contact', icon: null }
+  ];
 
 const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <footer className="relative bg-gradient-to-b from-[#0a1128] to-[#050b1e] text-white pt-16 pb-8 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-16 relative z-10">
+    <footer className="bg-[#0a1128] text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-blue-900/50">
+      <div className="max-w-7xl mx-auto">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Branding Section */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 text-blue-300 flex items-center gap-2">
+              <Droplet className="text-cyan-400" size={20} />
+              DREAMS OF BANGLADESH
+            </h3>
+            <p className="text-blue-100 mb-4">
+              Pioneering marine technology solutions for a sustainable future.
+            </p>
+            <div className="flex gap-4">
+              <a href="https://instagram.com/dreams_of_bangladesh" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-pink-400 transition-colors">
+                <Instagram size={20} />
+              </a>
+              <a href="https://youtube.com/DREAMSofBangladesh" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-red-400 transition-colors">
+                <Youtube size={20} />
+              </a>
+            </div>
+          </div>
 
-        {/* Left: Quick Access */}
-        <div className="relative">
-          <div className="text-xl font-semibold mb-4 text-cyan-300">Quick Access</div>
-          <div
-            onClick={() => setIsOpen(!isOpen)}
-            className="relative w-14 h-14 bg-blue-800/40 border border-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-all"
-          >
-            <Droplet className="text-cyan-300" size={24} />
-
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute left-20 top-0 bg-blue-900 border border-blue-700 shadow-xl rounded-lg px-4 py-3 z-30"
-                >
-                  <ul className="flex  gap-6 text-sm">
-                    {navItems.map((item, idx) => (
-                      <li key={idx} className="relative group focus-within:z-40">
-                        <a
-                          href={item.href}
-                          className="text-blue-100 hover:text-cyan-400 flex items-center gap-1"
+          {/* Navigation Links with Dropdowns */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 text-blue-300">Quick Links</h3>
+            <ul className="space-y-2">
+              {navLinks.map((link, index) => (
+                <li key={index} className="relative">
+                  <div className="flex flex-col">
+                    <a 
+                      href={link.href} 
+                      className="text-blue-100 hover:text-blue-400 transition-colors flex items-center gap-2"
+                      onClick={(e) => {
+                        if (link.children) {
+                          e.preventDefault();
+                          toggleDropdown(index);
+                        }
+                      }}
+                    >
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      {link.icon && <span className="mr-1">{link.icon}</span>}
+                      {link.name}
+                      {link.children && (
+                        <svg 
+                          className={`w-4 h-4 ml-1 transition-transform ${activeDropdown === index ? 'rotate-180' : ''}`} 
+                          fill="none" 
+                          viewBox="0 0 24 24" 
+                          stroke="currentColor"
                         >
                           {item.icon && <span>{item.icon}</span>}
                           {item.name}
@@ -96,23 +130,16 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Center: Branding & Socials */}
-        <div className="flex flex-col items-center text-center">
-          <h3 className="text-2xl font-bold mb-2 text-cyan-400 flex items-center gap-2">
-            <Droplet className="text-cyan-500" size={22} /> DREAMS OF BANGLADESH
-          </h3>
-          <p className="text-blue-100 mb-4 max-w-xs">
-            Pioneering marine technology solutions for a sustainable future.
-          </p>
-          <div className="flex gap-6 text-2xl">
-            <a href="https://x.com/dobhydrojan?s=21" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-all">
-              <FaXTwitter />
-            </a>
-            <a href="https://www.instagram.com/dob_hydrojan" target="_blank" rel="noreferrer" className="hover:text-pink-400 transition-all">
-              <FaInstagram />
-            </a>
-            <a href="https://www.facebook.com/share/1AdQanx7Xf" target="_blank" rel="noreferrer" className="hover:text-blue-500 transition-all">
-              <FaFacebook />
+        {/* Copyright Bar */}
+        <div className="border-t border-blue-900/50 pt-6 flex flex-col sm:flex-row justify-between items-center">
+          <div className="flex items-center gap-2 text-blue-300 mb-4 sm:mb-0">
+            <Copyright size={16} />
+            <span>Copyright 2021-2025 DREAMS OF BANGLADESH | HydroJan. All Rights Reserved.</span>
+          </div>
+          
+          <div className="flex gap-4">
+            <a href="#" className="text-blue-300 hover:text-blue-400 transition-colors text-sm">
+              Terms of Service
             </a>
             <a href="https://youtube.com/@dobhydrojan" target="_blank" rel="noreferrer" className="hover:text-red-500 transition-all">
               <FaYoutube />
@@ -142,11 +169,6 @@ const Footer = () => {
       <div className="mt-12 pt-6 border-t border-blue-800 text-center text-sm text-blue-500 relative z-10">
         © 2021–2025 DREAMS OF BANGLADESH | HydroJan. All rights reserved.
       </div>
-
-      {/* 3D Underwater Animated Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-cyan-900 via-[#0a1128] to-[#050b1e] opacity-50 z-0 animate-pulse"></div>
-      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-[300px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full z-0"></div>
-      <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-blue-400/10 blur-[100px] rounded-full z-0"></div>
     </footer>
   );
 };

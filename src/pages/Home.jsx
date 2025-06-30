@@ -1,178 +1,157 @@
-import { motion } from "framer-motion";
-import RevealSection from "../components/RevealSection";
+import React, { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Waves, Droplets, Anchor } from "lucide-react";
 
 export default function Home() {
+  const [firstEnded, setFirstEnded] = useState(false);
+  const [loopStarted, setLoopStarted] = useState(false);
+  const videoRef = useRef(null);
+
+  // When the first play ends, reveal hero content and start infinite loop
+  const handleVideoEnded = () => {
+    setFirstEnded(true);
+    setTimeout(() => {
+      setLoopStarted(true);
+      // Restart video for looping
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+      }
+    }, 250); // Optional: tiny buffer for clean transition
+  };
+
+  // Features
   const features = [
     {
       title: "Deep Sea Exploration",
       description: "Cutting-edge technology for uncharted depths",
-      icon: <Anchor className="text-blue-400" size={24} />
+      icon: <Anchor className="text-blue-400" size={28} />,
     },
     {
       title: "Marine Conservation",
       description: "Sustainable solutions for ocean preservation",
-      icon: <Droplets className="text-teal-400" size={24} />
+      icon: <Droplets className="text-teal-400" size={28} />,
     },
     {
       title: "Underwater Innovation",
       description: "Revolutionary approaches to aquatic challenges",
-      icon: <Waves className="text-cyan-400" size={24} />
-    }
+      icon: <Waves className="text-cyan-400" size={28} />,
+    },
   ];
 
+  // Hero content animation: slow, clean, "from below"
+  const contentVariants = {
+    hidden: { opacity: 0, y: 60, scale: 0.95, filter: "blur(16px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: {
+        duration: 1.25,
+        type: "spring",
+        damping: 18,
+        delayChildren: 0.5,
+        staggerChildren: 0.23,
+      },
+    },
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 48, scale: 0.98, filter: "blur(12px)" },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: { duration: 1, type: "spring", stiffness: 80, damping: 14 },
+    },
+  };
+
   return (
-    <div className="bg-gradient-to-b from-[#0a0b0f] to-[#0e1120] text-white min-h-screen">
-      <div className="space-y-32 px-4 md:px-20 pt-24 pb-40 max-w-7xl mx-auto">
-        {/* Hero Section */}
-        <RevealSection>
-          <motion.section 
-            className="text-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-cyan-300 mb-6"
-              initial={{ y: 50 }}
-              animate={{ y: 0 }}
-              transition={{ type: "spring", damping: 10 }}
-            >
-              Welcome to Hydrojan
-            </motion.h1>
-            <motion.p 
-              className="text-xl text-blue-100 max-w-3xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
-              Pioneering the future of underwater technology
-            </motion.p>
-          </motion.section>
-        </RevealSection>
+    <div className="relative min-h-screen bg-[#0a0b0f]">
+      {/* HERO SECTION with Video BG */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Video as hero bg */}
+        <video
+          ref={videoRef}
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          src="/video/bg-video.mp4"
+          autoPlay
+          muted
+          playsInline
+          loop={loopStarted}
+          onEnded={handleVideoEnded}
+          style={{ pointerEvents: "none" }}
+        />
+        {/* Soft dark overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0b0f]/80 to-[#0e1120]/85 z-10" />
 
-        {/* Mission Section */}
-        <RevealSection delay={0.3}>
-          <motion.section 
-            className="bg-gradient-to-br from-blue-900/30 to-cyan-900/20 p-8 rounded-2xl backdrop-blur-xl border border-blue-800/30 shadow-2xl shadow-blue-900/20"
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <motion.div 
-              className="absolute inset-0 bg-[url('/noise.png')] opacity-1 rounded-2xl pointer-events-none"
-              animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
-              transition={{
-                duration: 60,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "linear"
-              }}
-            />
-            <h2 className="text-3xl mb-6 font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-cyan-200">
-              Our Mission
-            </h2>
-            <motion.p 
-              className="text-lg text-blue-100 leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Innovating the underwater world with sustainable solutions that push the boundaries of 
-              marine exploration while preserving our precious ocean ecosystems.
-            </motion.p>
-          </motion.section>
-        </RevealSection>
-
-        {/* Features Section */}
-        <RevealSection delay={0.6}>
-          <section className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, i) => (
-              <motion.div 
-                key={i}
-                className="group relative bg-gradient-to-br from-blue-900/20 to-cyan-900/10 p-8 rounded-xl backdrop-blur-lg border border-blue-800/20 hover:border-cyan-500/30 transition-all duration-300 overflow-hidden"
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 * i, duration: 0.6 }}
-                whileHover={{ 
-                  y: -10,
-                  boxShadow: "0 20px 25px -5px rgba(34, 211, 238, 0.1), 0 10px 10px -5px rgba(34, 211, 238, 0.04)"
-                }}
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className="flex items-center gap-4 mb-6">
-                  <motion.div 
-                    className="p-3 rounded-lg bg-blue-900/30 group-hover:bg-cyan-500/20 transition-colors"
-                    whileHover={{ rotate: 15 }}
-                  >
-                    {feature.icon}
-                  </motion.div>
-                  <h3 className="text-xl font-semibold text-blue-100 group-hover:text-cyan-200 transition-colors">
-                    {feature.title}
-                  </h3>
-                </div>
-                
-                <p className="text-blue-200/80 group-hover:text-blue-100 transition-colors">
-                  {feature.description}
-                </p>
-                
-                <motion.div 
-                  className="absolute bottom-6 right-6 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{
-                    delay: 0.3,
-                    duration: 1.5,
-                    repeat: Infinity
-                  }}
-                >
-                  <ArrowRight size={20} />
-                </motion.div>
-              </motion.div>
-            ))}
-          </section>
-        </RevealSection>
-
-        {/* CTA Section */}
-        <RevealSection delay={0.9}>
-          <motion.section 
-            className="text-center mt-20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-          >
+        {/* AnimatePresence for HERO CONTENT */}
+        <AnimatePresence>
+          {firstEnded && (
             <motion.div
-              className="inline-block relative"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="relative z-20 w-full flex flex-col items-center justify-center min-h-screen"
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
             >
-              <motion.div 
-                className="absolute inset-0 bg-cyan-500 rounded-full blur-xl opacity-0 group-hover:opacity-70 -z-10"
-                animate={{
-                  opacity: [0, 0.5, 0],
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatDelay: 1
-                }}
-              />
-              <button className="group flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg shadow-cyan-500/20 transition-all duration-300">
-                Explore Our Technology
-                <motion.span
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity
-                  }}
+              {/* Main hero text */}
+              <motion.div variants={cardVariants} className="mb-8">
+                <h1 className="text-4xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-blue-200 text-transparent bg-clip-text text-center drop-shadow-md">
+                  Welcome to Hydrojan
+                </h1>
+                <p className="text-lg md:text-2xl text-blue-100 mt-6 text-center max-w-2xl mx-auto">
+                  Pioneering the future of underwater technology.
+                </p>
+              </motion.div>
+
+              {/* Features row */}
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-5xl mt-4 mb-12"
+                variants={contentVariants}
+              >
+                {features.map((feature, i) => (
+                  <motion.div
+                    key={i}
+                    variants={cardVariants}
+                    className="bg-white/10 backdrop-blur-[7px] border border-blue-100/20 rounded-2xl shadow-xl flex flex-col items-center p-8 transition-all hover:scale-105 hover:shadow-cyan-300/20 duration-300"
+                  >
+                    <div className="mb-3">{feature.icon}</div>
+                    <h3 className="text-xl font-semibold text-cyan-100 mb-1 text-center">
+                      {feature.title}
+                    </h3>
+                    <p className="text-blue-200/90 text-center">
+                      {feature.description}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA Card */}
+              <motion.div
+                variants={cardVariants}
+                className="w-full max-w-xl bg-white/10 backdrop-blur-[7px] border border-blue-100/20 rounded-2xl shadow-lg flex flex-col items-center p-8 mb-2"
+              >
+                <h2 className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-200 to-cyan-200 mb-3 text-center">
+                  Our Mission
+                </h2>
+                <p className="text-blue-100 text-center mb-6">
+                  Innovating the underwater world with sustainable solutions that push the boundaries of
+                  marine exploration while preserving our precious ocean ecosystems.
+                </p>
+                <motion.button
+                  className="px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold shadow-lg shadow-cyan-500/20 transition-all duration-300"
+                  whileHover={{ scale: 1.07 }}
                 >
-                  <ArrowRight className="group-hover:rotate-45 transition-transform" size={20} />
-                </motion.span>
-              </button>
+                  Explore Our Technology
+                  <ArrowRight className="inline ml-2" size={22} />
+                </motion.button>
+              </motion.div>
             </motion.div>
-          </motion.section>
-        </RevealSection>
-      </div>
+          )}
+        </AnimatePresence>
+      </section>
     </div>
   );
 }
