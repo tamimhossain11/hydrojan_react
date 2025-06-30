@@ -101,7 +101,7 @@ const BlogOne = () => {
         viewport={{ once: true }}
       >
         <img
-          src="/image/blog1two.jpg"
+          src="/Image/blog1two.jpg"
           alt="HydroJan Building"
           className="object-cover w-full h-full"
         />

@@ -70,17 +70,26 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-        <Link to="/" className="relative group">
+        {/* Logo and Brand */}
+        <Link to="/" className="flex items-center gap-3 group">
+          <img
+            src="/Image/dobhydrojanlogo.png"
+            alt="DoB HydroJan Logo"
+            loading="eager"
+            width={40}
+            height={40}
+            className="w-10 h-10 object-contain rounded-full"
+          />
           <motion.span
-            className="text-2xl font-bold bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent"
+            className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-300 to-blue-100 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 400 }}
           >
-            Hydrojan
+           DoB HydroJan
           </motion.span>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:block relative will-change-transform">
           <ul className="flex gap-1">
             {navItems.map((item, index) => (
@@ -115,6 +124,7 @@ const Navbar = () => {
                   )}
                 </Link>
 
+                {/* Dropdown Menu */}
                 {item.children && (
                   <AnimatePresence>
                     {activeDropdown === index && (
@@ -147,7 +157,7 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        {/* Buttons */}
+        {/* Search & Mobile Menu Button */}
         <div className="flex items-center gap-3">
           <motion.button
             onClick={() => setSearchOpen(true)}
@@ -168,11 +178,12 @@ const Navbar = () => {
         </div>
       </div>
 
+      {/* Search Overlay */}
       <AnimatePresence>
         {searchOpen && <SearchOverlay setSearchOpen={setSearchOpen} />}
       </AnimatePresence>
 
-      {/* Mobile Menu */}
+      {/* Mobile Navigation Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
@@ -204,7 +215,7 @@ const Navbar = () => {
                   )}
                 </button>
 
-                {/* Child Links */}
+                {/* Mobile Dropdown Links */}
                 <AnimatePresence>
                   {item.children && activeDropdown === index && (
                     <motion.div

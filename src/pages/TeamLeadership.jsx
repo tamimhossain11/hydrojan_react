@@ -9,7 +9,6 @@ const teamMembers = [
     name: "Mahadir Islam",
     designation: "Team Leader & Electrical Lead",
     company: "DOB HYDROJAN",
-    type: "core",
   },
   {
     id: 2,
@@ -17,7 +16,6 @@ const teamMembers = [
     name: "Md Athar Shihab",
     designation: "Team Co-Leader",
     company: "DOB HYDROJAN",
-    type: "core",
   },
   {
     id: 3,
@@ -61,12 +59,16 @@ const teamMembers = [
     designation: "Operations Lead",
     company: "DOB HYDROJAN",
   },
+  {
+    id: 9,
+    thumb: "tuhin.jpg",
+    name: "Kamrul Islam Tuhin",
+    designation: "Mechanical Lead",
+    company: "DOB HYDROJAN",
+  },
 ];
 
 const TeamLeadership = () => {
-  const core = teamMembers.filter((m) => m.type === "core");
-  const others = teamMembers.filter((m) => m.type !== "core");
-
   return (
     <section className="min-h-screen bg-gradient-to-br from-[#020617] via-[#0a1128] to-[#050b1e] text-white px-6 py-20">
       <div className="max-w-7xl mx-auto space-y-16">
@@ -86,58 +88,30 @@ const TeamLeadership = () => {
           </p>
         </motion.div>
 
-        {/* First Row: Leader & Co-Leader */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-          {core.map((member, index) => (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group bg-[#0f1a3b]/60 border border-cyan-800 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md hover:shadow-cyan-500/30 transition-all duration-500 relative"
-            >
-              {/* Image */}
-              <div className="h-[80%] w-full overflow-hidden">
-                <img
-                  src={`/leaders/${member.thumb}`}
-                  alt={member.name}
-                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-
-              {/* Info */}
-              <div className="p-4 space-y-1 text-center bg-gradient-to-b from-transparent to-[#0a1128]">
-                <h3 className="text-xl font-bold text-cyan-300 drop-shadow-sm">{member.name}</h3>
-                <p className="text-blue-200 text-xl">{member.designation}</p>
-                <p className="text-blue-500 text-xl tracking-widest">{member.company}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Second Row: Other Department Leads */}
+        {/* Team Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8">
-          {others.map((member, index) => (
+          {teamMembers.map((member, index) => (
             <motion.div
               key={member.id}
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group bg-[#0f1a3b]/60 border border-blue-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-cyan-400/40 transition-all duration-500 relative"
+              className="group bg-[#0f1a3b]/60 border border-blue-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-cyan-400/40 transition-all duration-500 relative flex flex-col"
+              style={{ height: "370px" }} // Fixed height for the whole card
             >
-              {/* Image */}
-              <div className="h-[70%] w-full overflow-hidden">
+              {/* Image Section */}
+              <div className="h-2/3 w-full overflow-hidden">
                 <img
                   src={`/leaders/${member.thumb}`}
                   alt={member.name}
+                  loading="lazy"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
 
-              {/* Info */}
-              <div className="p-4 space-y-1 text-center bg-gradient-to-b from-transparent to-[#0a1128]">
+              {/* Info Section */}
+              <div className="h-1/3 p-4 space-y-1 text-center bg-gradient-to-b from-transparent to-[#0a1128] flex flex-col justify-center">
                 <h3 className="text-lg font-bold text-cyan-300 drop-shadow-sm">{member.name}</h3>
                 <p className="text-blue-200 text-sm">{member.designation}</p>
                 <p className="text-blue-500 text-xs tracking-widest">{member.company}</p>

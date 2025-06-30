@@ -1,4 +1,3 @@
-// Footer.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -39,64 +38,99 @@ const navItems = [
 ];
 
 const Footer = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const toggleDropdown = (index) => {
+    setActiveDropdown((prev) => (prev === index ? null : index));
+  };
 
   return (
     <footer className="relative bg-gradient-to-b from-[#0a1128] to-[#050b1e] text-white pt-16 pb-8 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-16 relative z-10">
 
-        {/* Left: Quick Access */}
+        {/* Quick Access */}
         <div className="relative">
           <div className="text-xl font-semibold mb-4 text-cyan-300">Quick Access</div>
           <div
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={() => setMenuOpen(!menuOpen)}
             className="relative w-14 h-14 bg-blue-800/40 border border-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-all"
           >
             <Droplet className="text-cyan-300" size={24} />
+          </div>
 
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute left-20 top-0 bg-blue-900 border border-blue-700 shadow-xl rounded-lg px-4 py-3 z-30"
-                >
-                  <ul className="flex  gap-6 text-sm">
-                    {navItems.map((item, idx) => (
-                      <li key={idx} className="relative group focus-within:z-40">
+          <AnimatePresence>
+            {menuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ duration: 0.3 }}
+                className="absolute left-20 top-0 bg-blue-900 border border-blue-700 shadow-xl rounded-lg px-4 py-3 z-30"
+              >
+                <ul className="space-y-2 text-sm text-blue-100">
+                  {navItems.map((item, idx) => (
+                    <li key={idx} className="relative">
+                      {item.children ? (
+                        <>
+                          <div
+                            onClick={() => toggleDropdown(idx)}
+                            className="flex items-center justify-between gap-2 cursor-pointer hover:text-cyan-400"
+                          >
+                            <div className="flex items-center gap-2">
+                              {item.icon}
+                              <span>{item.name}</span>
+                            </div>
+                            <motion.span
+                              animate={{ rotate: activeDropdown === idx ? 90 : 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="text-xs"
+                            >
+                              ▶
+                            </motion.span>
+                          </div>
+
+                          <AnimatePresence>
+                            {activeDropdown === idx && (
+                              <motion.ul
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="pl-4 mt-2 space-y-1 border-l border-blue-600"
+                              >
+                                {item.children.map((child, cidx) => (
+                                  <li key={cidx}>
+                                    <a
+                                      href={child.href}
+                                      className="block py-1 hover:text-cyan-300"
+                                    >
+                                      {child.name}
+                                    </a>
+                                  </li>
+                                ))}
+                              </motion.ul>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
                         <a
                           href={item.href}
-                          className="text-blue-100 hover:text-cyan-400 flex items-center gap-1"
+                          className="flex items-center gap-2 hover:text-cyan-400"
                         >
-                          {item.icon && <span>{item.icon}</span>}
+                          {item.icon}
                           {item.name}
                         </a>
-                        {item.children && (
-                          <ul className="absolute left-0 top-full mt-2 bg-blue-800/90 border border-blue-700 rounded-md p-2 shadow-lg group-hover:block group-focus-within:block z-40 hidden">
-                            {item.children.map((child, cidx) => (
-                              <li key={cidx}>
-                                <a
-                                  href={child.href}
-                                  className="block px-3 py-1 text-blue-100 hover:text-cyan-400 whitespace-nowrap"
-                                >
-                                  {child.name}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
-        {/* Center: Branding & Socials */}
+        {/* Branding & Socials */}
         <div className="flex flex-col items-center text-center">
           <h3 className="text-2xl font-bold mb-2 text-cyan-400 flex items-center gap-2">
             <Droplet className="text-cyan-500" size={22} /> DREAMS OF BANGLADESH
@@ -120,30 +154,44 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Right: Contact Info */}
+        {/* Contact Info */}
         <div>
           <div className="text-xl font-semibold mb-4 text-cyan-300">Contact Us</div>
           <ul className="text-blue-200 space-y-3 text-sm">
             <li>Block C, 9/25 Humayun Rd, Dhaka 1207</li>
-            <li><a href="tel:+8801746342152" className="hover:text-cyan-400">+880 1746-342152</a></li>
+            <li>
+              <a href="tel:+8801746342152" className="hover:text-cyan-400">
+                +880 1746-342152
+              </a>
+            </li>
             <li className="flex items-center gap-2">
               <FaEnvelope className="text-blue-400" />
-              <a href="mailto:dobhydrojan2@gmail.com" className="hover:text-cyan-400">dobhydrojan2@gmail.com</a>
+              <a
+                href="mailto:dobhydrojan2@gmail.com"
+                className="hover:text-cyan-400"
+              >
+                dobhydrojan2@gmail.com
+              </a>
             </li>
             <li className="flex items-center gap-2">
               <FaGlobe className="text-blue-400" />
-              <a href="https://www.hydrojan.tech" className="hover:text-cyan-400">www.hydrojan.tech</a>
+              <a
+                href="https://www.hydrojan.tech"
+                className="hover:text-cyan-400"
+              >
+                www.hydrojan.tech
+              </a>
             </li>
           </ul>
         </div>
       </div>
 
-      {/* Bottom Bar */}
+      {/* Bottom Copyright */}
       <div className="mt-12 pt-6 border-t border-blue-800 text-center text-sm text-blue-500 relative z-10">
         © 2021–2025 DREAMS OF BANGLADESH | HydroJan. All rights reserved.
       </div>
 
-      {/* 3D Underwater Animated Background */}
+      {/* Visual Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-cyan-900 via-[#0a1128] to-[#050b1e] opacity-50 z-0 animate-pulse"></div>
       <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-[300px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full z-0"></div>
       <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-blue-400/10 blur-[100px] rounded-full z-0"></div>

@@ -7,7 +7,7 @@ const RobosufBlog = () => {
   const [selectedBlog, setSelectedBlog] = useState("DOB HydroJan 0.1");
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-6 py-10 space-y-10">
+    <div className="min-h-screen bg-gray-950 text-white px-6 py-10 space-y-10 mt-20">
       <BlogHero selected={selectedBlog} setSelected={setSelectedBlog} />
       <BlogContent blog={selectedBlog} />
     </div>
