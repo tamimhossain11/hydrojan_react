@@ -5,8 +5,6 @@ import { Canvas, useLoader, useFrame } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import { MapPin, Phone, Mail, Globe, Send } from 'lucide-react';
 import { FaXTwitter, FaInstagram, FaFacebook, FaYoutube } from 'react-icons/fa6';
-import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 
 const Contact = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
