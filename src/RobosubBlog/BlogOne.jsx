@@ -58,8 +58,8 @@ const BlogOne = () => {
         variants={fadeUp}
       >
         <img
-          src="/Image/blog1One.jpg"
-          alt="HydroJan 0.1 Hero"
+          src="/public/Image/blog1one.jpg"
+          alt="HydroJan 0.1 "
           className="object-cover w-full h-full"
         />
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white px-4 text-center">
