@@ -67,7 +67,7 @@ const App = () => {
         },
         // Robosuf Routes
         {
-          path: 'robosuf',
+          path: 'robosub',
           children: [
             { index: true, element: <Suspense fallback={<LoadingSpinner />}><Robosuf /></Suspense> },
             { path: 'blog', element: <Suspense fallback={<LoadingSpinner />}><RobosufBlog /></Suspense> },

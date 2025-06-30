@@ -4,7 +4,7 @@ import Leader from '../components/Team/Leader'
 const TeamLeadership = () => {
   return (
     <div>
-      {/* <Leader/> */}
+      <Leader/>
 
       
     </div>
