@@ -132,8 +132,7 @@ const BlogTwo = () => {
           src="/Image/blog2two.png"
 >>>>>>> cf7d726d9cc640a9e5fd3077dd6ab3b5eeb88d8c
           alt="HydroJan 0.2 Hero"
-          className="object-cover w-full h-full"
-        />
+          className="object-cover w-full h-full" />
         <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-white px-4 text-center">
           <motion.h1
             className="text-4xl md:text-5xl font-bold mb-2"
