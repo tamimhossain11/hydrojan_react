@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const text = " DoB-HYDROJAN";
+const text = " DoB-HYDROযান";
 
 const letterVariants = {
   hidden: { opacity: 0, y: 50 },
