@@ -32,13 +32,16 @@ const Section1 = () => {
             Our Story: DoB HydroJan
           </h2>
           <p className="mt-4 text-md md:text-lg text-white/90 leading-relaxed max-w-2xl">
-            Founded in 2021, Dreams of Bangladesh – HydroJan was born from a dream to see Bangladesh making waves beneath the surface. This initiative was launched by passionate students and youth innovators who envisioned a future where our nation plays a key role in marine technology.
+            DOB HydroJan is the underwater robotics division of Dreams of Bangladesh, established in 2025 as the organization’s first entry into the field of Autonomous Underwater Vehicles (AUVs). With this initiative, we step into the international arena through our participation in the RoboSub competition, one of the world’s leading platforms for underwater robotics.
+
             <br /><br />
-            As the country’s first dedicated underwater robotics team, our journey started in high school workshops and grew into an internationally competitive unit. We’re now on a bold mission: RoboSub 2025. This is more than a challenge—it’s our opportunity to showcase Bangladesh's innovation on a global stage.
+            Our team brings together a group of dedicated students ranging from middle school to university level, combining diverse skill sets in engineering, programming, design, and innovation. While Dreams of Bangladesh has a strong track record in robotics and technology competitions, HydroJan represents a more focused and technically advanced direction, aimed at solving real-world underwater challenges through autonomous systems.
+
             <br /><br />
-            Our 2025 roadmap is filled with ambitious milestones: developing a next-generation Autonomous Underwater Vehicle (AUV), refining real-time navigation and AI systems, and collaborating globally to exchange knowledge and push boundaries.
+            We are committed to building reliable, mission-ready AUVs that reflect both technical rigor and creative problem-solving. Beyond the competition, our goal is to encourage STEM excellence among Bangladeshi youth, contribute to the country’s growing robotics landscape, and inspire future talent to pursue innovation in marine technology.
+
             <br /><br />
-            We are proud to represent the voice of Bangladeshi youth in underwater robotics. Our goal? Inspire a generation, innovate with impact, and make history—beneath the waves.
+            DOB HydroJan is a step forward for student-led research, practical engineering, and global collaboration from Bangladesh.
           </p>
         </motion.div>
       </div>
