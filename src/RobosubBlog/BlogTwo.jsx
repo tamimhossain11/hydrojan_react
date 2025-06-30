@@ -18,7 +18,7 @@ const BlogTwo = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog2hero.png"
+          src="/Image/blog2hero.png"
           alt="HydroJan 0.2 Hero"
           className="object-cover w-full h-full"
         />
@@ -77,7 +77,7 @@ const BlogTwo = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog2One.png"
+          src="/Image/blog2One.png"
           alt="HydroJan 0.2 Hero"
           className="object-cover w-full h-full"
         />
@@ -126,7 +126,7 @@ const BlogTwo = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog2two.png"
+          src="/Image/blog2two.png"
           alt="HydroJan 0.2 Hero"
           className="object-cover w-full h-full"
         />

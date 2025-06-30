@@ -18,7 +18,7 @@ const BlogOne = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog1hreo.jpg"
+          src="/Image/blog1hreo.jpg"
           alt="HydroJan 0.1 Hero"
           className="object-cover w-full h-full"
         />
@@ -58,7 +58,7 @@ const BlogOne = () => {
         variants={fadeUp}
       >
         <img
-          src="/public/Image/blog1One.jpg"
+          src="/Image/blog1One.jpg"
           alt="HydroJan 0.1 Hero"
           className="object-cover w-full h-full"
         />
@@ -101,7 +101,7 @@ const BlogOne = () => {
         viewport={{ once: true }}
       >
         <img
-          src="/public/image/blog1two.jpg"
+          src="/image/blog1two.jpg"
           alt="HydroJan Building"
           className="object-cover w-full h-full"
         />
@@ -122,7 +122,7 @@ const BlogOne = () => {
         viewport={{ once: true }}
       >
         <p>
-         The first real challenge we faced was gathering the materials. The skeleton of our AUV, its metal workframe, needed to be built from scratch. Once that was in place, we focused on constructing the rectangular hull and installing the thruster. All of this required locally sourced materials, so we scoured nearby stores, one by one, to collect everything we needed. It was a hustle, but it brought the team closer together. For the waterproofing test, we first tried using a large plastic tub, thinking it would be enough to simulate underwater conditions. But, as we quickly learned, the water wasn’t deep or spacious enough for the experiment to work as planned. This minor setback led us to a much better alternative; the Mirpur Cantonment Swimming Pool. It was there, in that professional setup, that we finally saw HydroJan 0.1 floating in water, and the excitement was indescribable.
+         The first real challenge we faced was gathering the materials. The skeleton of our AUV, its metal workframe, needed to be built from scratch. Once that was in place, we focused on constructing the rectangular hull and installing the thruster. All of this required locally sourced materials, so we scoured nearby stores, one by one, to collect everything we needed. It was a hustle, but it brought the team closer together. For the waterproofing test, we first tried using a large plastic tub, thinking it would be enough to simulate underwater conditions. But, as we quickly learned, the water wasn’t deep or spacious enough for the experiment to work as planned. This minor setback led us to a much better alternative; the DSCSC Sports Complex Swimming Pool. It was there, in that professional setup, that we finally saw HydroJan 0.1 floating in water, and the excitement was indescribable.
 We had set our goals clearly: to have the wired version of HydroJan 0.1 move 100 meters forward and dive at least 7 feet underwater. While it didn’t completely hit the mark, it came impressively close. Our prototype managed to move 85 meters forward and dive to a depth of 5 feet. The battery endurance time was 30 minutes and our mission runtime was for just an hour. Despite these early limitations, we were proud of what we had built and the lessons we were already learning. 
 None of this would have been possible without the minds behind the machine. Present at every step of testing were the core pillars of the project; the leader, the team manager, our mechanical lead, and our electrical lead. We’re learning from every success, every failure, every late-night lab session, and every test pool trial. And this is just the beginning.
 

@@ -100,7 +100,7 @@ const TeamLeadership = () => {
               {/* Image */}
               <div className="h-[80%] w-full overflow-hidden">
                 <img
-                  src={`/public/leaders/${member.thumb}`}
+                  src={`/leaders/${member.thumb}`}
                   alt={member.name}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 />
@@ -130,7 +130,7 @@ const TeamLeadership = () => {
               {/* Image */}
               <div className="h-[70%] w-full overflow-hidden">
                 <img
-                  src={`/public/leaders/${member.thumb}`}
+                  src={`/leaders/${member.thumb}`}
                   alt={member.name}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                 />
