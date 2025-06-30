@@ -1,8 +1,9 @@
-// Navbar.jsx
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScroll, useMotionValueEvent } from 'framer-motion';
-import { Menu, X, Search, FlaskConical, Microscope, Atom, BrainCircuit } from 'lucide-react';
+import {
+  Menu, X, Search, FlaskConical, Microscope, Atom, BrainCircuit
+} from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SearchOverlay from './SearchOverlay';
 
@@ -79,6 +80,7 @@ const Navbar = () => {
           </motion.span>
         </Link>
 
+        {/* Desktop Nav */}
         <nav className="hidden md:block relative will-change-transform">
           <ul className="flex gap-1">
             {navItems.map((item, index) => (
@@ -145,6 +147,7 @@ const Navbar = () => {
           </ul>
         </nav>
 
+        {/* Buttons */}
         <div className="flex items-center gap-3">
           <motion.button
             onClick={() => setSearchOpen(true)}
@@ -165,7 +168,72 @@ const Navbar = () => {
         </div>
       </div>
 
-      <AnimatePresence>{searchOpen && <SearchOverlay setSearchOpen={setSearchOpen} />}</AnimatePresence>
+      <AnimatePresence>
+        {searchOpen && <SearchOverlay setSearchOpen={setSearchOpen} />}
+      </AnimatePresence>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-blue-900/90 backdrop-blur-md px-6 pb-6 pt-2 space-y-2"
+          >
+            {navItems.map((item, index) => (
+              <div key={index}>
+                <button
+                  onClick={() => toggleDropdown(index)}
+                  className="w-full flex items-center justify-between text-white/90 font-medium text-sm py-2"
+                >
+                  <div className="flex items-center gap-2">
+                    {item.icon && <span className="opacity-70">{item.icon}</span>}
+                    {item.name}
+                  </div>
+                  {item.children && (
+                    <motion.span
+                      animate={{ rotate: activeDropdown === index ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-xs"
+                    >
+                      ▼
+                    </motion.span>
+                  )}
+                </button>
+
+                {/* Child Links */}
+                <AnimatePresence>
+                  {item.children && activeDropdown === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="ml-4 pl-2 border-l border-blue-600 space-y-1"
+                    >
+                      {item.children.map((child, childIdx) => (
+                        <Link
+                          key={childIdx}
+                          to={child.href}
+                          className="block text-sm text-white/70 py-1 hover:text-cyan-300 transition-all"
+                          onClick={() => {
+                            setActiveDropdown(null);
+                            setMenuOpen(false);
+                          }}
+                        >
+                          {child.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
