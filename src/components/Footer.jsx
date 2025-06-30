@@ -10,33 +10,33 @@ import {
 } from 'lucide-react';
 
 const navItems = [
-    { name: 'Home', href: '/', icon: null },
-    { name: 'About', href: '/about', icon: null },
-    {
+  { name: 'Home', href: '/', icon: null },
+  { name: 'About', href: '/about', icon: null },
+  {
     name: 'Team', href: '/team', icon: <BrainCircuit size={16} />, children: [
-        { name: 'Lead', href: '/team/leadership' },
-        { name: 'Departments', href: '/team/departments' },
-        { name: 'Advisors', href: '/team/advisors' }
-      ]
-    },
-    {
+      { name: 'Lead', href: '/team/leadership' },
+      { name: 'Departments', href: '/team/departments' },
+      { name: 'Advisors', href: '/team/advisors' }
+    ]
+  },
+  {
     name: 'RoboSub', href: '/robosub', icon: <FlaskConical size={16} />, children: [
       { name: 'Blog', href: '/robosub/blog' },
       { name: 'Gallery', href: '/robosub/gallery' },
       { name: 'Media', href: '/robosub/media' }
-      ]
-    },
-    {
+    ]
+  },
+  {
     name: 'AUV', href: '/auv', icon: <Microscope size={16} />, children: [
-        { name: 'HydroJan 0.1', href: '/auv/hydrojan-01' },
-        { name: 'HydroJan 0.2', href: '/auv/hydrojan-02' },
-        { name: 'HydroJan 0.3', href: '/auv/hydrojan-03' },
-        { name: 'HydroJan 1.0', href: '/auv/hydrojan-10' }
-      ]
-    },
-    { name: 'Sponsor', href: '/sponsor', icon: null },
-    { name: 'Contact', href: '/contact', icon: null }
-  ];
+      { name: 'HydroJan 0.1', href: '/auv/hydrojan-01' },
+      { name: 'HydroJan 0.2', href: '/auv/hydrojan-02' },
+      { name: 'HydroJan 0.3', href: '/auv/hydrojan-03' },
+      { name: 'HydroJan 1.0', href: '/auv/hydrojan-10' }
+    ]
+  },
+  { name: 'Sponsor', href: '/sponsor', icon: null },
+  { name: 'Contact', href: '/contact', icon: null }
+];
 
 const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,25 +66,9 @@ const Footer = () => {
                   <ul className="flex  gap-6 text-sm">
                     {navItems.map((item, idx) => (
                       <li key={idx} className="relative group focus-within:z-40">
-                    <a 
-                      href={link.href} 
-                      className="text-blue-100 hover:text-blue-400 transition-colors flex items-center gap-2"
-                      onClick={(e) => {
-                        if (link.children) {
-                          e.preventDefault();
-                          toggleDropdown(index);
-                        }
-                      }}
-                    >
-                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      {link.icon && <span className="mr-1">{link.icon}</span>}
-                      {link.name}
-                      {link.children && (
-                        <svg 
-                          className={`w-4 h-4 ml-1 transition-transform ${activeDropdown === index ? 'rotate-180' : ''}`} 
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke="currentColor"
+                        <a
+                          href={item.href}
+                          className="text-blue-100 hover:text-cyan-400 flex items-center gap-1"
                         >
                           {item.icon && <span>{item.icon}</span>}
                           {item.name}
@@ -112,16 +96,23 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright Bar */}
-        <div className="border-t border-blue-900/50 pt-6 flex flex-col sm:flex-row justify-between items-center">
-          <div className="flex items-center gap-2 text-blue-300 mb-4 sm:mb-0">
-            <Copyright size={16} />
-            <span>Copyright 2021-2025 DREAMS OF BANGLADESH | HydroJan. All Rights Reserved.</span>
-          </div>
-          
-          <div className="flex gap-4">
-            <a href="#" className="text-blue-300 hover:text-blue-400 transition-colors text-sm">
-              Terms of Service
+        {/* Center: Branding & Socials */}
+        <div className="flex flex-col items-center text-center">
+          <h3 className="text-2xl font-bold mb-2 text-cyan-400 flex items-center gap-2">
+            <Droplet className="text-cyan-500" size={22} /> DREAMS OF BANGLADESH
+          </h3>
+          <p className="text-blue-100 mb-4 max-w-xs">
+            Pioneering marine technology solutions for a sustainable future.
+          </p>
+          <div className="flex gap-6 text-2xl">
+            <a href="https://x.com/dobhydrojan?s=21" target="_blank" rel="noreferrer" className="hover:text-cyan-400 transition-all">
+              <FaXTwitter />
+            </a>
+            <a href="https://www.instagram.com/dob_hydrojan" target="_blank" rel="noreferrer" className="hover:text-pink-400 transition-all">
+              <FaInstagram />
+            </a>
+            <a href="https://www.facebook.com/share/1AdQanx7Xf" target="_blank" rel="noreferrer" className="hover:text-blue-500 transition-all">
+              <FaFacebook />
             </a>
             <a href="https://youtube.com/@dobhydrojan" target="_blank" rel="noreferrer" className="hover:text-red-500 transition-all">
               <FaYoutube />
@@ -151,6 +142,11 @@ const Footer = () => {
       <div className="mt-12 pt-6 border-t border-blue-800 text-center text-sm text-blue-500 relative z-10">
         © 2021–2025 DREAMS OF BANGLADESH | HydroJan. All rights reserved.
       </div>
+
+      {/* 3D Underwater Animated Background */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-cyan-900 via-[#0a1128] to-[#050b1e] opacity-50 z-0 animate-pulse"></div>
+      <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 w-[300px] h-[300px] bg-cyan-500/10 blur-[120px] rounded-full z-0"></div>
+      <div className="absolute top-0 right-0 w-[200px] h-[200px] bg-blue-400/10 blur-[100px] rounded-full z-0"></div>
     </footer>
   );
 };

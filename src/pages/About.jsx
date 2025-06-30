@@ -3,6 +3,8 @@ import React, { useEffect, Suspense } from 'react';
 import AboutHero from '../components/About/AboutHero';
 import Section1 from '../components/About/section1';
 import Section2 from '../components/About/Section2'
+
+import Outreach from '../components/About/Outreach';
 import '../styles/About.css'; // Custom CSS for cursor
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Stars, Plane } from '@react-three/drei';
@@ -39,7 +41,13 @@ const About = () => {
       <div className="relative z-10">
         <AboutHero />
         <Section1 />
-        <Section2/>
+        {/* <Section2/>
+         */}
+         <br />
+         <br />
+         <Outreach/>
+
+
       </div>
     </div>
   );

@@ -1,47 +1,39 @@
-// Section1.jsx
 import React from "react";
 import { motion } from "framer-motion";
 
 const Section1 = () => {
   return (
-    <div className="relative h-[600px] w-full text-white">
-      {/* Content Layer */}
-      <div className="relative z-10 h-full container mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+    <div className="relative w-full  text-white py-16 md:py-24">
+      <div className="relative z-10 container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
+        
         {/* Left: Group Image */}
         <motion.div
-          className="w-full md:w-1/2 h-auto flex justify-center items-center"
+          className="w-full md:w-1/2 flex justify-center items-center"
           initial={{ opacity: 0, x: -80 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <img
-            src="/public/Image/GroupPic1.jpg"
+            src="/Image/GroupPic1.jpg"
             alt="DoB HydroJan Team"
-            className="rounded-[5px] shadow-xl object-cover w-[80%] max-h-[400px]"
+            className="rounded-[5px] shadow-xl object-cover w-[90%] max-h-[500px]"
           />
         </motion.div>
 
-        {/* Right: Heading and Description */}
+        {/* Right: Text Content */}
         <motion.div
-          className="w-full md:w-1/2 text-left mt-10 md:mt-0"
+          className="w-full md:w-1/2 text-left"
           initial={{ opacity: 0, x: 80 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white drop-shadow">
-            Our Story: DoB HydroJan
+          <h2 className="text-3xl md:text-5xl font-bold text-cyan-400 drop-shadow-md mb-4">
+            Our Story: <span className="text-white">DoB HydroJan</span>
           </h2>
-          <p className="mt-4 text-md md:text-lg text-white/90 leading-relaxed max-w-2xl">
-            DOB HydroJan is the underwater robotics division of Dreams of Bangladesh, established in 2025 as the organization’s first entry into the field of Autonomous Underwater Vehicles (AUVs). With this initiative, we step into the international arena through our participation in the RoboSub competition, one of the world’s leading platforms for underwater robotics.
-
-            <br /><br />
-            Our team brings together a group of dedicated students ranging from middle school to university level, combining diverse skill sets in engineering, programming, design, and innovation. While Dreams of Bangladesh has a strong track record in robotics and technology competitions, HydroJan represents a more focused and technically advanced direction, aimed at solving real-world underwater challenges through autonomous systems.
-
-            <br /><br />
-            We are committed to building reliable, mission-ready AUVs that reflect both technical rigor and creative problem-solving. Beyond the competition, our goal is to encourage STEM excellence among Bangladeshi youth, contribute to the country’s growing robotics landscape, and inspire future talent to pursue innovation in marine technology.
-
-            <br /><br />
-            DOB HydroJan is a step forward for student-led research, practical engineering, and global collaboration from Bangladesh.
+          <p className="text-white/90 text-md md:text-lg leading-relaxed max-w-2xl">
+            DoB HydroJan is the underwater robotics division of <strong className="text-cyan-300">Dreams of Bangladesh</strong>, launched in 2025 as our first venture into Autonomous Underwater Vehicles (AUVs). Our journey begins on the global stage through the prestigious <strong>RoboSub</strong> competition.
+            
+            With team members ranging from middle school to university, we combine diverse expertise in engineering, programming, and design. While Dreams of Bangladesh has a legacy in robotics, <strong className="text-cyan-300">HydroJan</strong> marks our leap into advanced innovation, tackling real underwater challenges with autonomy and purpose.
           </p>
         </motion.div>
       </div>
