@@ -1,11 +1,17 @@
-import React from 'react'
+// pages/RobosubBlog.jsx
+import React, { useState } from "react";
+import BlogHero from "../RobosubBlog/BlogHreo";
+import BlogContent from "../RobosubBlog/BlogContent";
 
 const RobosufBlog = () => {
-  return (
-    <div>
-      RobosufBlog.jsx
-    </div>
-  )
-}
+  const [selectedBlog, setSelectedBlog] = useState("DOB HydroJan 0.1");
 
-export default RobosufBlog
+  return (
+    <div className="min-h-screen bg-gray-950 text-white px-6 py-10 space-y-10">
+      <BlogHero selected={selectedBlog} setSelected={setSelectedBlog} />
+      <BlogContent blog={selectedBlog} />
+    </div>
+  );
+};
+
+export default RobosufBlog;
