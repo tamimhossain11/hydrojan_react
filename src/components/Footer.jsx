@@ -9,37 +9,25 @@ import {
   Droplet, BrainCircuit, FlaskConical, Microscope
 } from 'lucide-react';
 
-const Footer = () => {
-  const [activeDropdown, setActiveDropdown] = useState(null);
-
-  const navLinks = [
+const navItems = [
     { name: 'Home', href: '/', icon: null },
     { name: 'About', href: '/about', icon: null },
     {
-      name: 'Team',
-      href: '/team',
-      icon: <BrainCircuit size={16} />,
-      children: [
+    name: 'Team', href: '/team', icon: <BrainCircuit size={16} />, children: [
         { name: 'Lead', href: '/team/leadership' },
         { name: 'Departments', href: '/team/departments' },
         { name: 'Advisors', href: '/team/advisors' }
       ]
     },
     {
-      name: 'RoboSuf',
-      href: '/robosuf',
-      icon: <FlaskConical size={16} />,
-      children: [
-        { name: 'Blog', href: '/robosuf/blog' },
-        { name: 'Gallery', href: '/robosuf/gallery' },
-        { name: 'Media', href: '/robosuf/media' }
+    name: 'RoboSub', href: '/robosub', icon: <FlaskConical size={16} />, children: [
+      { name: 'Blog', href: '/robosub/blog' },
+      { name: 'Gallery', href: '/robosub/gallery' },
+      { name: 'Media', href: '/robosub/media' }
       ]
     },
     {
-      name: 'AUV',
-      href: '/auv',
-      icon: <Microscope size={16} />,
-      children: [
+    name: 'AUV', href: '/auv', icon: <Microscope size={16} />, children: [
         { name: 'HydroJan 0.1', href: '/auv/hydrojan-01' },
         { name: 'HydroJan 0.2', href: '/auv/hydrojan-02' },
         { name: 'HydroJan 0.3', href: '/auv/hydrojan-03' },
@@ -54,36 +42,30 @@ const Footer = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <footer className="bg-[#0a1128] text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8 border-t border-blue-900/50">
-      <div className="max-w-7xl mx-auto">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          {/* Branding Section */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-300 flex items-center gap-2">
-              <Droplet className="text-cyan-400" size={20} />
-              DREAMS OF BANGLADESH
-            </h3>
-            <p className="text-blue-100 mb-4">
-              Pioneering marine technology solutions for a sustainable future.
-            </p>
-            <div className="flex gap-4">
-              <a href="https://instagram.com/dreams_of_bangladesh" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-pink-400 transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="https://youtube.com/DREAMSofBangladesh" target="_blank" rel="noopener noreferrer" className="text-blue-100 hover:text-red-400 transition-colors">
-                <Youtube size={20} />
-              </a>
-            </div>
-          </div>
+    <footer className="relative bg-gradient-to-b from-[#0a1128] to-[#050b1e] text-white pt-16 pb-8 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-16 relative z-10">
 
-          {/* Navigation Links with Dropdowns */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-300">Quick Links</h3>
-            <ul className="space-y-2">
-              {navLinks.map((link, index) => (
-                <li key={index} className="relative">
-                  <div className="flex flex-col">
+        {/* Left: Quick Access */}
+        <div className="relative">
+          <div className="text-xl font-semibold mb-4 text-cyan-300">Quick Access</div>
+          <div
+            onClick={() => setIsOpen(!isOpen)}
+            className="relative w-14 h-14 bg-blue-800/40 border border-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-all"
+          >
+            <Droplet className="text-cyan-300" size={24} />
+
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute left-20 top-0 bg-blue-900 border border-blue-700 shadow-xl rounded-lg px-4 py-3 z-30"
+                >
+                  <ul className="flex  gap-6 text-sm">
+                    {navItems.map((item, idx) => (
+                      <li key={idx} className="relative group focus-within:z-40">
                     <a 
                       href={link.href} 
                       className="text-blue-100 hover:text-blue-400 transition-colors flex items-center gap-2"
