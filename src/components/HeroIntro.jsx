@@ -1,4 +1,3 @@
-// src/components/HeroIntro.jsx
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,7 +13,6 @@ const letterVariants = {
 };
 
 export default function HeroIntro({ onComplete, triggerOut }) {
-  // triggerOut: when true, begin exit animation early
   const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => {
@@ -43,12 +41,12 @@ export default function HeroIntro({ onComplete, triggerOut }) {
           exit={{
             opacity: 0,
             scale: 1.12,
-            transition: { duration: 1.2, ease: [0.4, 0.15, 0.2, 1] }
+            transition: { duration: 1.2, ease: [0.4, 0.15, 0.2, 1] },
           }}
           transition={{ duration: 0.7 }}
         >
           <motion.div
-            className="text-white text-6xl md:text-8xl font-extrabold tracking-widest"
+            className="text-white text-[2.5rem] sm:text-5xl md:text-7xl font-extrabold tracking-widest text-center px-4"
             initial="hidden"
             animate="visible"
           >
