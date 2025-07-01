@@ -1,0 +1,226 @@
+[
+  {
+    "name": "Mahadir Islam",
+    "designation": "(Leader)",
+    "id": 1,
+    "thumb": "mahadir.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md. Athar Shihab",
+    "designation": "(Co-leader)",
+    "id": 2,
+    "thumb": "athar.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md. Moin Uddin",
+    "designation": "(Advisor)",
+    "id": 3,
+    "thumb": "AdvisonPic.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Ariful Hasan",
+    "designation": "(Advisor)",
+    "id": 4,
+    "thumb": "AdvisonPic.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Mridul Hasan",
+    "designation": "(Mentor)",
+    "id": 5,
+    "thumb": "mridul.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md. Mubassirul Islam",
+    "designation": "(Mentor)",
+    "id": 6,
+    "thumb": "Mubassirul.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md. Shohidul Islam Bulbul",
+    "designation": "(Mentor)",
+    "id": 7,
+    "thumb": "Shohidul.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Mursalin Hossain Misat",
+    "designation": "(Software Lead)",
+    "id": 8,
+    "thumb": "mursalin.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "S M Uday Haider",
+    "designation": "(R&D Lead)",
+    "id": 9,
+    "thumb": "uday.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Humayra Afia",
+    "designation": "(Documentation Lead)",
+    "id": 10,
+    "thumb": "humayra.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Safin Ahmed",
+    "designation": "(Operations Lead)",
+    "id": 11,
+    "thumb": "safin.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Sayed Sorower Zahan Nipun",
+    "designation": "(Operations Team Member)",
+    "id": 12,
+    "thumb": "Sorower.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Tamim Hossain",
+    "designation": "(Website Lead)",
+    "id": 13,
+    "thumb": "tamim.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Mahadi Hassan Shurov ",
+    "designation": "(Website Co-lead)",
+    "id": 14,
+    "thumb": "mahadi.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Abrar Atif Rahman",
+    "designation": "(Electrical Team Member)",
+    "id": 15,
+    "thumb": "Atif.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Alif Zahan Prachurja",
+    "designation": "(Team Manager)",
+    "id": 16,
+    "thumb": "alif.JPG",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Anas Bin Azim",
+    "designation": "(Software Team Member)",
+    "id": 17,
+    "thumb": "Anas.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md. Fahim Hossain",
+    "designation": "(Software Team Member)",
+    "id": 18,
+    "thumb": "Fahim.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Fahim Muntasir Galib",
+    "designation": "(Software Team Member)",
+    "id": 19,
+    "thumb": " Galib.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md Sifayet Hossan Rohan",
+    "designation": "(Mechanical Team Member)",
+    "id": 20,
+    "thumb": "Rohan.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Mohmmad Nurul Huda",
+    "designation": "(Mechanical Team Member)",
+    "id": 21,
+    "thumb": "Nurul.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Saadman Syeed",
+    "designation": "(Mechanical Team Member)",
+    "id": 22,
+    "thumb": "Saadman.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Md Sunjim Hossain",
+    "designation": "(Mechanical Team Member)",
+    "id": 23,
+    "thumb": "",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Tashrif Tamim",
+    "designation": "(Operations Team Member)",
+    "id": 24,
+    "thumb": "Tashrif.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Asif Mohammad Sami",
+    "designation": "(Mechanical Team Member)",
+    "id": 25,
+    "thumb": "Sami.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Mehedi Hasan Robin",
+    "designation": "(Electrical Team Member)",
+    "id": 26,
+    "thumb": "Robin.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "S M Mohsin",
+    "designation": "(Operations Team Member)",
+    "id": 27,
+    "thumb": "Mohsin.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Shubhadipa Das",
+    "designation": "(Documentation Team Member)",
+    "id": 28,
+    "thumb": "Shubhadipa.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Dewan Md Foyzullah Munim",
+    "designation": "(Electrical Team Member)",
+    "id": 29,
+    "thumb": "Munim.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Abdur Rahman Sadek",
+    "designation": "(Mechanical Team Member)",
+    "id": 30,
+    "thumb": "Sadek.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Jahid Hasan Romel",
+    "designation": "(Team Member)",
+    "id": 31,
+    "thumb": "Romel.jpg",
+    "company": "DOB HYDROJAN"
+  },
+  {
+    "name": "Kamrul Islam",
+    "designation": "(Electrical Lead)",
+    "id": 32,
+    "thumb": "tuhin.jpg",
+    "company": "DOB HYDROJAN"
+  }
+]
