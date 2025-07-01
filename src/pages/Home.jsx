@@ -1,31 +1,30 @@
+// pages/Home.jsx
 import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Anchor, Droplets, Waves } from "lucide-react";
+
 import Timeline from "../components/Home/Timeline";
+import Goals from "../components/Home/Goals";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Goals from "../components/Home/Goals";
 
 export default function Home() {
   const [firstEnded, setFirstEnded] = useState(false);
   const [loopStarted, setLoopStarted] = useState(false);
   const videoRef = useRef(null);
 
-  // Array of words to cycle through in the hero headline
   const texts = ["Hydrojan", "AUV System", "Underwater Explorer"];
   const typingSpeed = 150;
   const erasingSpeed = 100;
   const pauseBeforeErase = 1500;
   const pauseBeforeType = 200;
 
-  // Typewriter state
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
 
   useEffect(() => {
     let timer;
-
     const handleType = () => {
       const fullText = texts[textIndex];
       const updated = isDeleting
@@ -35,16 +34,13 @@ export default function Home() {
       setDisplayedText(updated);
 
       if (!isDeleting && updated === fullText) {
-        // Pause at full text, then start erasing
         timer = setTimeout(() => setIsDeleting(true), pauseBeforeErase);
       } else if (isDeleting && updated === "") {
-        // Move to next word
         setIsDeleting(false);
         setTextIndex((idx) => (idx + 1) % texts.length);
         timer = setTimeout(handleType, pauseBeforeType);
         return;
       } else {
-        // Continue typing or erasing
         timer = setTimeout(
           handleType,
           isDeleting ? erasingSpeed : typingSpeed
@@ -56,7 +52,6 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, textIndex]);
 
-  // Video end handler
   const handleVideoEnded = () => {
     setFirstEnded(true);
     setTimeout(() => {
@@ -68,7 +63,6 @@ export default function Home() {
     }, 250);
   };
 
-  // Feature cards data
   const features = [
     {
       title: "Deep Sea Exploration",
@@ -87,7 +81,6 @@ export default function Home() {
     },
   ];
 
-  // Framer Motion variants
   const contentVariants = {
     hidden: { opacity: 0, y: 60, filter: "blur(16px)" },
     visible: {
@@ -127,6 +120,7 @@ export default function Home() {
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
           src="/video/bg-video.mp4"
+          poster="/video/bg-poster.jpg"
           autoPlay
           muted
           playsInline
@@ -145,7 +139,6 @@ export default function Home() {
               animate="visible"
               exit="hidden"
             >
-              {/* Static + Dynamic Typewriter */}
               <motion.h1
                 className="text-4xl md:text-7xl font-extrabold text-blue-100 drop-shadow-md"
                 variants={cardVariants}
@@ -157,7 +150,6 @@ export default function Home() {
                 </span>
               </motion.h1>
 
-              {/* Sub-headline */}
               <motion.p
                 className="text-lg md:text-2xl text-blue-100 max-w-2xl"
                 variants={cardVariants}
@@ -165,7 +157,6 @@ export default function Home() {
                 Pioneering the future of underwater technology.
               </motion.p>
 
-              {/* Feature Cards */}
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-5xl mt-12"
                 variants={contentVariants}

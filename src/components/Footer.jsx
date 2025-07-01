@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaXTwitter, FaInstagram, FaFacebook, FaYoutube,
@@ -101,12 +102,13 @@ const Footer = () => {
                               >
                                 {item.children.map((child, cidx) => (
                                   <li key={cidx}>
-                                    <a
-                                      href={child.href}
+                                    <Link
+                                      to={child.href}
                                       className="block py-1 hover:text-cyan-300"
+                                      onClick={() => setMenuOpen(false)}
                                     >
                                       {child.name}
-                                    </a>
+                                    </Link>
                                   </li>
                                 ))}
                               </motion.ul>
@@ -114,13 +116,14 @@ const Footer = () => {
                           </AnimatePresence>
                         </>
                       ) : (
-                        <a
-                          href={item.href}
+                        <Link
+                          to={item.href}
                           className="flex items-center gap-2 hover:text-cyan-400"
+                          onClick={() => setMenuOpen(false)}
                         >
                           {item.icon}
                           {item.name}
-                        </a>
+                        </Link>
                       )}
                     </li>
                   ))}

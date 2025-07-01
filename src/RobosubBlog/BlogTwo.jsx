@@ -100,7 +100,7 @@ const BlogTwo = () => {
         variants={fadeUp}
       >
         <img
-          src="/Image/blog2One.png"
+          src="/Image/blog2one.png"
           alt="HydroJan 0.2 - Phase 2"
           className="object-cover w-full h-full"
         />

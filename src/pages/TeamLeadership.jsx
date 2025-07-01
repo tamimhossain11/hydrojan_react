@@ -5,56 +5,56 @@ import { BadgeCheck } from "lucide-react";
 const teamMembers = [
   {
     id: 1,
-    thumb: "mahadir.jpg",
+    thumb: "mahadir.JPG",
     name: "Mahadir Islam",
     designation: "Team Leader & Electrical Lead",
     company: "DOB HYDROJAN",
   },
   {
     id: 2,
-    thumb: "athar.jpg",
+    thumb: "athar.JPG",
     name: "Md Athar Shihab",
     designation: "Team Co-Leader",
     company: "DOB HYDROJAN",
   },
   {
     id: 3,
-    thumb: "alif.jpg",
+    thumb: "alif.JPG",
     name: "Alif Zahan Prachurja",
     designation: "Team Manager",
     company: "DOB HYDROJAN",
   },
   {
     id: 4,
-    thumb: "mursalin.jpg",
+    thumb: "mursalin.JPG",
     name: "Mursalin Hossain Misat",
     designation: "Software Lead",
     company: "DOB HYDROJAN",
   },
   {
     id: 5,
-    thumb: "tamim.jpg",
+    thumb: "tamim.JPG",
     name: "Tamim Hossain",
     designation: "Website Lead",
     company: "DOB HYDROJAN",
   },
   {
     id: 6,
-    thumb: "uday.jpg",
+    thumb: "uday.JPG",
     name: "S M Uday Haider",
     designation: "Research & Development Lead",
     company: "DOB HYDROJAN",
   },
   {
     id: 7,
-    thumb: "humayra.jpg",
+    thumb: "humayra.JPG",
     name: "Humayra Afia",
     designation: "Documentation Lead",
     company: "DOB HYDROJAN",
   },
   {
     id: 8,
-    thumb: "safin.jpg",
+    thumb: "safin.JPG",
     name: "Safin Ahmed",
     designation: "Operations Lead",
     company: "DOB HYDROJAN",
@@ -98,10 +98,10 @@ const TeamLeadership = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="group bg-[#0f1a3b]/60 border border-blue-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-cyan-400/40 transition-all duration-500 relative flex flex-col"
-              style={{ height: "370px" }} // Fixed height for the whole card
+              style={{ height: "500px" }}
             >
-              {/* Image Section */}
-              <div className="h-2/3 w-full overflow-hidden">
+              {/* Image Section - 80% */}
+              <div className="h-[80%] w-full overflow-hidden">
                 <img
                   src={`/leaders/${member.thumb}`}
                   alt={member.name}
@@ -110,11 +110,11 @@ const TeamLeadership = () => {
                 />
               </div>
 
-              {/* Info Section */}
-              <div className="h-1/3 p-4 space-y-1 text-center bg-gradient-to-b from-transparent to-[#0a1128] flex flex-col justify-center">
+              {/* Info Section - 20% */}
+              <div className="h-[25%] p-4 space-y-1 text-center bg-gradient-to-b from-transparent to-[#0a1128] flex flex-col justify-center">
                 <h3 className="text-lg font-bold text-cyan-300 drop-shadow-sm">{member.name}</h3>
                 <p className="text-blue-200 text-sm">{member.designation}</p>
-                <p className="text-blue-500 text-xs tracking-widest">{member.company}</p>
+                <p className="text-blue-500 text-x tracking-widest">{member.company}</p>
               </div>
             </motion.div>
           ))}
