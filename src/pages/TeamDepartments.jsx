@@ -26,7 +26,7 @@ const TeamDepartments = () => {
               className="h-[500px] rounded-xl overflow-hidden shadow-lg group border border-white/20 bg-white/5 backdrop-blur-sm"
             >
               {/* Image Section - 80% */}
-              <div className="h-[80%] w-full overflow-hidden">
+              <div className="h-[75%] w-full overflow-hidden">
                 <img
                   src={`/Image/leaders/${member.thumb}`}
                   alt={member.name}
