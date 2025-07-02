@@ -30,49 +30,53 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: !introComplete ? (
-        <HeroIntro onComplete={() => setIntroComplete(true)} />
-      ) : (
+      element: (
         <Suspense fallback={<LoadingSpinner />}>
           <MainLayout />
         </Suspense>
       ),
-      children: introComplete
-        ? [
-            { index: true, element: <Home /> },
-            { path: 'about', element: <About /> },
-            {
-              path: 'team',
-              children: [
-                { index: true, element: <Team /> },
-                { path: 'leadership', element: <TeamLeadership /> },
-                { path: 'departments', element: <TeamDepartments /> },
-                { path: 'advisors', element: <TeamAdvisors /> },
-              ],
-            },
-            {
-              path: 'robosub',
-              children: [
-                { index: true, element: <Robosuf /> },
-                { path: 'blog', element: <RobosufBlog /> },
-                { path: 'gallery', element: <RobosufGallery /> },
-                { path: 'media', element: <RobosufMedia /> },
-              ],
-            },
-            {
-              path: 'auv',
-              children: [
-                { index: true, element: <AUV /> },
-                { path: 'hydrojan-01', element: <HydroJan01 /> },
-                { path: 'hydrojan-02', element: <HydroJan02 /> },
-                { path: 'hydrojan-03', element: <HydroJan03 /> },
-                { path: 'hydrojan-10', element: <HydroJan10 /> },
-              ],
-            },
-            { path: 'sponsor', element: <Sponsor /> },
-            { path: 'contact', element: <Contact /> },
-          ]
-        : [],
+      children: [
+        {
+          index: true,
+          element: (
+            <>
+              {!introComplete && <HeroIntro onComplete={() => setIntroComplete(true)} />}
+              {introComplete && <Home />}
+            </>
+          ),
+        },
+        { path: 'about', element: <About /> },
+        {
+          path: 'team',
+          children: [
+            { index: true, element: <Team /> },
+            { path: 'leadership', element: <TeamLeadership /> },
+            { path: 'departments', element: <TeamDepartments /> },
+            { path: 'advisors', element: <TeamAdvisors /> },
+          ],
+        },
+        {
+          path: 'robosub',
+          children: [
+            { index: true, element: <Robosuf /> },
+            { path: 'blog', element: <RobosufBlog /> },
+            { path: 'gallery', element: <RobosufGallery /> },
+            { path: 'media', element: <RobosufMedia /> },
+          ],
+        },
+        {
+          path: 'auv',
+          children: [
+            { index: true, element: <AUV /> },
+            { path: 'hydrojan-01', element: <HydroJan01 /> },
+            { path: 'hydrojan-02', element: <HydroJan02 /> },
+            { path: 'hydrojan-03', element: <HydroJan03 /> },
+            { path: 'hydrojan-10', element: <HydroJan10 /> },
+          ],
+        },
+        { path: 'sponsor', element: <Sponsor /> },
+        { path: 'contact', element: <Contact /> },
+      ],
     },
   ]);
 
