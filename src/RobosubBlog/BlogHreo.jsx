@@ -1,12 +1,13 @@
-// components/BlogHero.jsx
 import React from "react";
 import { motion } from "framer-motion";
 
+// List of all blog titles
 const blogs = [
   "DOB HydroJan 0.1",
   "DOB HydroJan 0.2",
   "DOB HydroJan 0.3",
   "DOB HydroJan 1",
+  "Outreach Blog" // 👈 New button added here
 ];
 
 const BlogHero = ({ selected, setSelected }) => {

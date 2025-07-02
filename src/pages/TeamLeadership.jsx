@@ -7,7 +7,7 @@ const teamMembers = [
     id: 1,
     thumb: "mahadir.jpg",
     name: "Mahadir Islam",
-    designation: "Team Leader & Electrical Lead",
+    designation: "Team Leader & Mechanical Lead",
     company: "DOB HYDROJAN",
   },
   {
@@ -63,7 +63,7 @@ const teamMembers = [
     id: 9,
     thumb: "tuhin.jpg",
     name: "Kamrul Islam Tuhin",
-    designation: "Mechanical Lead",
+    designation: "Electrical Lead",
     company: "DOB HYDROJAN",
   },
 ];

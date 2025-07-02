@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Stars, Plane } from "@react-three/drei";
 import Hero from "../components/AUV1/Hero";
 import AUVOne from "../components/AUV1/AUVOne";
-import "../styles/About.css"; // Optional: for custom cursor or extra styling
+
 
 // 🌊 Ocean Wave Component
 const OceanWave = () => {

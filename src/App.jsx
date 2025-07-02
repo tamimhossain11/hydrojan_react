@@ -1,10 +1,9 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import LoadingSpinner from './components/LoadingSpinner';
-import HeroIntro from './components/HeroIntro';
 
-// Lazy-loaded components
+// Lazy-loaded pages
 const SubmarineScene = lazy(() => import('./scenes/Submarine'));
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -24,16 +23,10 @@ const HydroJan10 = lazy(() => import('./pages/HydroJan10'));
 const Sponsor = lazy(() => import('./pages/Sponsor'));
 const Contact = lazy(() => import('./pages/Contact'));
 
-const App = () => {
-  const [introComplete, setIntroComplete] = useState(false);
-
-  // Router configuration
-  const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: '/',
-    element: !introComplete ? (
-      <HeroIntro onComplete={() => setIntroComplete(true)} />
-    ) : (
+    element: (
       <Suspense fallback={<LoadingSpinner />}>
         <SubmarineScene />
         <Home />
@@ -53,39 +46,141 @@ const App = () => {
           </Suspense>
         )
       },
-      // Team
       {
         path: 'team',
         children: [
-          { index: true, element: <Suspense fallback={<LoadingSpinner />}><Team /></Suspense> },
-          { path: 'leadership', element: <Suspense fallback={<LoadingSpinner />}><TeamLeadership /></Suspense> },
-          { path: 'departments', element: <Suspense fallback={<LoadingSpinner />}><TeamDepartments /></Suspense> },
-          { path: 'advisors', element: <Suspense fallback={<LoadingSpinner />}><TeamAdvisors /></Suspense> },
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <Team />
+              </Suspense>
+            )
+          },
+          {
+            path: 'leadership',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <TeamLeadership />
+              </Suspense>
+            )
+          },
+          {
+            path: 'departments',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <TeamDepartments />
+              </Suspense>
+            )
+          },
+          {
+            path: 'advisors',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <TeamAdvisors />
+              </Suspense>
+            )
+          }
         ]
       },
-      // Robosub
       {
         path: 'robosub',
         children: [
-          { index: true, element: <Suspense fallback={<LoadingSpinner />}><Robosuf /></Suspense> },
-          { path: 'blog', element: <Suspense fallback={<LoadingSpinner />}><RobosufBlog /></Suspense> },
-          { path: 'gallery', element: <Suspense fallback={<LoadingSpinner />}><RobosufGallery /></Suspense> },
-          { path: 'media', element: <Suspense fallback={<LoadingSpinner />}><RobosufMedia /></Suspense> },
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <Robosuf />
+              </Suspense>
+            )
+          },
+          {
+            path: 'blog',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <RobosufBlog />
+              </Suspense>
+            )
+          },
+          {
+            path: 'gallery',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <RobosufGallery />
+              </Suspense>
+            )
+          },
+          {
+            path: 'media',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <RobosufMedia />
+              </Suspense>
+            )
+          }
         ]
       },
-      // AUV
       {
         path: 'auv',
         children: [
-          { index: true, element: <Suspense fallback={<LoadingSpinner />}><AUV /></Suspense> },
-          { path: 'hydrojan-01', element: <Suspense fallback={<LoadingSpinner />}><HydroJan01 /></Suspense> },
-          { path: 'hydrojan-02', element: <Suspense fallback={<LoadingSpinner />}><HydroJan02 /></Suspense> },
-          { path: 'hydrojan-03', element: <Suspense fallback={<LoadingSpinner />}><HydroJan03 /></Suspense> },
-          { path: 'hydrojan-10', element: <Suspense fallback={<LoadingSpinner />}><HydroJan10 /></Suspense> },
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <AUV />
+              </Suspense>
+            )
+          },
+          {
+            path: 'hydrojan-01',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <HydroJan01 />
+              </Suspense>
+            )
+          },
+          {
+            path: 'hydrojan-02',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <HydroJan02 />
+              </Suspense>
+            )
+          },
+          {
+            path: 'hydrojan-03',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <HydroJan03 />
+              </Suspense>
+            )
+          },
+          {
+            path: 'hydrojan-10',
+            element: (
+              <Suspense fallback={<LoadingSpinner />}>
+                <HydroJan10 />
+              </Suspense>
+            )
+          }
         ]
       },
-      { path: 'sponsor', element: <Suspense fallback={<LoadingSpinner />}><Sponsor /></Suspense> },
-      { path: 'contact', element: <Suspense fallback={<LoadingSpinner />}><Contact /></Suspense> },
+      {
+        path: 'sponsor',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Sponsor />
+          </Suspense>
+        )
+      },
+      {
+        path: 'contact',
+        element: (
+          <Suspense fallback={<LoadingSpinner />}>
+            <Contact />
+          </Suspense>
+        )
+      }
     ]
   },
   {
@@ -98,6 +193,7 @@ const App = () => {
   }
 ]);
 
+const App = () => {
   return <RouterProvider router={router} />;
 };
 

@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 
 const AboutHero = () => {
   return (
-    <div className="relative h-[500px] w-full text-white fish-cursor overflow-hidden ">
+    <div className="relative h-[500px] w-full text-white fish-cursor overflow-hidden">
       {/* Optional 3D / Animated Background Layer Placeholder */}
       <div className="absolute inset-0 z-0 bg-[url('/image/auv-bg.gif')] bg-cover bg-center opacity-10 blur-sm"></div>
 
@@ -35,18 +35,18 @@ const AboutHero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.8 }}
         >
-          <a
-            href="#team"
+          <Link
+            to="/team/departments"
             className="px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow-md transition"
           >
             Meet the Team
-          </a>
-          <a
-            href="#journey"
+          </Link>
+          <Link
+            to="/robosub/blog"
             className="px-6 py-2 rounded-full border border-blue-400 text-blue-300 hover:bg-blue-500 hover:text-white transition font-medium"
           >
             Explore Our Journey
-          </a>
+          </Link>
         </motion.div>
       </div>
     </div>
