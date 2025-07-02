@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import "../../styles/About.css"; // fish-cursor styles
+
 
 const AboutHero = () => {
   return (
