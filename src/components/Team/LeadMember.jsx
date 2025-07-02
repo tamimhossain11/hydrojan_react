@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Skeleton from '@mui/material/Skeleton';
 
 const members = [
   // Mechanical Department
@@ -233,29 +234,44 @@ const members = [
   }
 ];
 
-const Card = ({ person }) => (
-  <motion.div
-    whileHover={{ scale: 1.05 }}
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.6, ease: 'easeOut' }}
-    className=" border border-blue-700 shadow-xl rounded-xl overflow-hidden text-white flex flex-col text-center"
-    style={{ height: '460px' }}
-  >
-    <div className="h-[70%]">
-      <img
-        src={`/leaders/${person.thumb}`}
-        alt={person.name}
-        className="w-full h-full object-cover"
-      />
-    </div>
-    <div className="h-[30%] px-4 py-2 flex flex-col justify-center items-center">
-      <h3 className="text-lg font-semibold text-cyan-300">{person.name}</h3>
-      <p className="text-sm text-blue-300">{person.designation}</p>
-      <p className="text-xs text-blue-400">{person.company}</p>
-    </div>
-  </motion.div>
-);
+const Card = ({ person }) => {
+  const [loaded, setLoaded] = React.useState(false);
+
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="border border-blue-700 shadow-xl rounded-xl overflow-hidden text-white flex flex-col text-center"
+      style={{ height: '460px' }}
+    >
+      <div className="h-[70%] relative">
+        {!loaded && (
+          <Skeleton
+            variant="rectangular"
+            width="100%"
+            height="100%"
+            sx={{ bgcolor: 'rgba(255,255,255,0.1)' }}
+          />
+        )}
+        <img
+          src={`/leaders/${person.thumb}`}
+          alt={person.name}
+          onLoad={() => setLoaded(true)}
+          className={`w-full h-full object-cover absolute top-0 left-0 transition-opacity duration-500 ${
+            loaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      </div>
+      <div className="h-[30%] px-4 py-2 flex flex-col justify-center items-center">
+        <h3 className="text-lg font-semibold text-cyan-300">{person.name}</h3>
+        <p className="text-sm text-blue-300">{person.designation}</p>
+        <p className="text-xs text-blue-400">{person.company}</p>
+      </div>
+    </motion.div>
+  );
+};
 
 const LeadMember = () => {
   const grouped = members.reduce((acc, person) => {
@@ -265,7 +281,7 @@ const LeadMember = () => {
   }, {});
 
   return (
-    <div className="min-h-screen px-6 py-16 bg-gradient-to-br  text-white">
+    <div className="min-h-screen px-6 py-16 bg-gradient-to-br text-white">
       {Object.entries(grouped).map(([department, people]) => (
         <div key={department} className="max-w-7xl mx-auto mb-20">
           <motion.h2

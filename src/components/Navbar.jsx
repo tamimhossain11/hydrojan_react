@@ -85,7 +85,7 @@ const Navbar = () => {
             whileHover={{ scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 400 }}
           >
-           DoB HydroJan
+            DoB HydroJan
           </motion.span>
         </Link>
 
@@ -196,15 +196,15 @@ const Navbar = () => {
           >
             {navItems.map((item, index) => (
               <div key={index}>
-                <button
-                  onClick={() => toggleDropdown(index)}
-                  className="w-full flex items-center justify-between text-white/90 font-medium text-sm py-2"
-                >
-                  <div className="flex items-center gap-2">
-                    {item.icon && <span className="opacity-70">{item.icon}</span>}
-                    {item.name}
-                  </div>
-                  {item.children && (
+                {item.children ? (
+                  <button
+                    onClick={() => toggleDropdown(index)}
+                    className="w-full flex items-center justify-between text-white/90 font-medium text-sm py-2"
+                  >
+                    <div className="flex items-center gap-2">
+                      {item.icon && <span className="opacity-70">{item.icon}</span>}
+                      {item.name}
+                    </div>
                     <motion.span
                       animate={{ rotate: activeDropdown === index ? 180 : 0 }}
                       transition={{ duration: 0.2 }}
@@ -212,8 +212,19 @@ const Navbar = () => {
                     >
                       ▼
                     </motion.span>
-                  )}
-                </button>
+                  </button>
+                ) : (
+                  <Link
+                    to={item.href}
+                    className="w-full block text-white/90 font-medium text-sm py-2"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <div className="flex items-center gap-2">
+                      {item.icon && <span className="opacity-70">{item.icon}</span>}
+                      {item.name}
+                    </div>
+                  </Link>
+                )}
 
                 {/* Mobile Dropdown Links */}
                 <AnimatePresence>
