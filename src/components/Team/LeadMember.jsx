@@ -244,7 +244,7 @@ const Card = ({ person }) => (
   >
     <div className="h-[70%]">
       <img
-        src={`/Image/${person.thumb}`}
+        src={`/leaders/${person.thumb}`}
         alt={person.name}
         className="w-full h-full object-cover"
       />

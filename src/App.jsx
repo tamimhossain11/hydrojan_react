@@ -1,9 +1,10 @@
-import React, { lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import LoadingSpinner from './components/LoadingSpinner';
+import HeroIntro from './components/HeroIntro';
 
-// Lazy-loaded pages
+// Lazy-loaded components
 const SubmarineScene = lazy(() => import('./scenes/Submarine'));
 const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
@@ -23,177 +24,58 @@ const HydroJan10 = lazy(() => import('./pages/HydroJan10'));
 const Sponsor = lazy(() => import('./pages/Sponsor'));
 const Contact = lazy(() => import('./pages/Contact'));
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <SubmarineScene />
-        <Home />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/',
-    element: <MainLayout />,
-    children: [
-      {
-        path: 'about',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <SubmarineScene />
-            <About />
-          </Suspense>
-        )
-      },
-      {
-        path: 'team',
-        children: [
-          {
-            index: true,
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <Team />
-              </Suspense>
-            )
-          },
-          {
-            path: 'leadership',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <TeamLeadership />
-              </Suspense>
-            )
-          },
-          {
-            path: 'departments',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <TeamDepartments />
-              </Suspense>
-            )
-          },
-          {
-            path: 'advisors',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <TeamAdvisors />
-              </Suspense>
-            )
-          }
-        ]
-      },
-      {
-        path: 'robosub',
-        children: [
-          {
-            index: true,
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <Robosuf />
-              </Suspense>
-            )
-          },
-          {
-            path: 'blog',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <RobosufBlog />
-              </Suspense>
-            )
-          },
-          {
-            path: 'gallery',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <RobosufGallery />
-              </Suspense>
-            )
-          },
-          {
-            path: 'media',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <RobosufMedia />
-              </Suspense>
-            )
-          }
-        ]
-      },
-      {
-        path: 'auv',
-        children: [
-          {
-            index: true,
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <AUV />
-              </Suspense>
-            )
-          },
-          {
-            path: 'hydrojan-01',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <HydroJan01 />
-              </Suspense>
-            )
-          },
-          {
-            path: 'hydrojan-02',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <HydroJan02 />
-              </Suspense>
-            )
-          },
-          {
-            path: 'hydrojan-03',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <HydroJan03 />
-              </Suspense>
-            )
-          },
-          {
-            path: 'hydrojan-10',
-            element: (
-              <Suspense fallback={<LoadingSpinner />}>
-                <HydroJan10 />
-              </Suspense>
-            )
-          }
-        ]
-      },
-      {
-        path: 'sponsor',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Sponsor />
-          </Suspense>
-        )
-      },
-      {
-        path: 'contact',
-        element: (
-          <Suspense fallback={<LoadingSpinner />}>
-            <Contact />
-          </Suspense>
-        )
-      }
-    ]
-  },
-  {
-    path: '*',
-    element: (
-      <Suspense fallback={<LoadingSpinner />}>
-        <Home />
-      </Suspense>
-    )
-  }
-]);
-
 const App = () => {
+  const [introComplete, setIntroComplete] = useState(false);
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: !introComplete ? (
+        <HeroIntro onComplete={() => setIntroComplete(true)} />
+      ) : (
+        <Suspense fallback={<LoadingSpinner />}>
+          <MainLayout />
+        </Suspense>
+      ),
+      children: introComplete
+        ? [
+            { index: true, element: <Home /> },
+            { path: 'about', element: <About /> },
+            {
+              path: 'team',
+              children: [
+                { index: true, element: <Team /> },
+                { path: 'leadership', element: <TeamLeadership /> },
+                { path: 'departments', element: <TeamDepartments /> },
+                { path: 'advisors', element: <TeamAdvisors /> },
+              ],
+            },
+            {
+              path: 'robosub',
+              children: [
+                { index: true, element: <Robosuf /> },
+                { path: 'blog', element: <RobosufBlog /> },
+                { path: 'gallery', element: <RobosufGallery /> },
+                { path: 'media', element: <RobosufMedia /> },
+              ],
+            },
+            {
+              path: 'auv',
+              children: [
+                { index: true, element: <AUV /> },
+                { path: 'hydrojan-01', element: <HydroJan01 /> },
+                { path: 'hydrojan-02', element: <HydroJan02 /> },
+                { path: 'hydrojan-03', element: <HydroJan03 /> },
+                { path: 'hydrojan-10', element: <HydroJan10 /> },
+              ],
+            },
+            { path: 'sponsor', element: <Sponsor /> },
+            { path: 'contact', element: <Contact /> },
+          ]
+        : [],
+    },
+  ]);
+
   return <RouterProvider router={router} />;
 };
 

@@ -6,14 +6,14 @@ const people = [
     name: "Md. Moin Uddin",
     designation: "(Advisor)",
     id: 1,
-    image: "/Image/AdvisorTwo.jpg",
+    image: "/leaders/AdvisorTwo.jpg",
     company: "DOB HYDROJAN"
   },
   {
     name: "Ariful Hasan Opu",
     designation: "(Advisor)",
     id: 2,
-    image: "/Image/AdvisonPic.jpg",
+    image: "/leaders/AdvisonPic.jpg",
     company: "DOB HYDROJAN"
   },
   {
@@ -27,14 +27,14 @@ const people = [
     name: "Md. Mubassirul Islam",
     designation: "(Mentor)",
     id: 4,
-    image: "/Image/Mubassirul.jpg",
+    image: "/leaders/Mubassirul.jpg",
     company: "DOB HYDROJAN"
   },
   {
     name: "Md. Shohidul Islam Bulbul",
     designation: "(Mentor)",
     id: 5,
-    image: "/Image/Shohidul.jpg",
+    image: "/leaders/Shohidul.jpg",
     company: "DOB HYDROJAN"
   }
 ];

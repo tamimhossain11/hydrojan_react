@@ -19,7 +19,7 @@ export default function HeroIntro({ onComplete, triggerOut }) {
     const timer = setTimeout(() => {
       setShowIntro(false);
       if (onComplete) onComplete();
-    }, 3500);
+    },3500);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
