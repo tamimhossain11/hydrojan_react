@@ -6,6 +6,9 @@ import { Anchor, Droplets, Waves } from "lucide-react";
 import Timeline from "../components/Home/Timeline";
 import Goals from "../components/Home/Goals";
 
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+
 
 
 export default function Home() {
@@ -110,6 +113,7 @@ export default function Home() {
     <div className="relative bg-[#0a0b0f]">
       {firstEnded && (
         <header className="fixed top-0 left-0 w-full z-50">
+          <Navbar />
           
         </header>
       )}
@@ -191,8 +195,8 @@ export default function Home() {
           <section className="z-10 pt-24 pb-16 px-4 lg:px-0 bg-[#0a0b0f]">
             <Goals />
           </section>
-          <footer className="">
-      
+          <footer className="bg-[#0e1120] py-8">
+            <Footer />
           </footer>
         </>
       )}

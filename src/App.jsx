@@ -1,12 +1,11 @@
 import React, { useState, lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
 import LoadingSpinner from './components/LoadingSpinner';
 import HeroIntro from './components/HeroIntro';
 
 // Lazy-loaded components
-const SubmarineScene = lazy(() => import('./scenes/Submarine'));
 const Home = lazy(() => import('./pages/Home'));
+const MainLayout = lazy(() => import('./layouts/MainLayout'));
 const About = lazy(() => import('./pages/About'));
 const Team = lazy(() => import('./pages/Team'));
 const TeamLeadership = lazy(() => import('./pages/TeamLeadership'));
@@ -23,11 +22,23 @@ const HydroJan03 = lazy(() => import('./pages/HydroJan03'));
 const HydroJan10 = lazy(() => import('./pages/HydroJan10'));
 const Sponsor = lazy(() => import('./pages/Sponsor'));
 const Contact = lazy(() => import('./pages/Contact'));
+const NotFound = lazy(() => import('./pages/NotFound')); // Optional
 
 const App = () => {
   const [introComplete, setIntroComplete] = useState(false);
 
   const router = createBrowserRouter([
+    // ---- HOME PAGE: No layout ----
+    {
+      path: '/',
+      element: (
+        <Suspense fallback={<LoadingSpinner />}>
+          {!introComplete && <HeroIntro onComplete={() => setIntroComplete(true)} />}
+          {introComplete && <Home />}
+        </Suspense>
+      ),
+    },
+    // ---- ALL OTHER ROUTES: With MainLayout ----
     {
       path: '/',
       element: (
@@ -36,15 +47,6 @@ const App = () => {
         </Suspense>
       ),
       children: [
-        {
-          index: true,
-          element: (
-            <>
-              {!introComplete && <HeroIntro onComplete={() => setIntroComplete(true)} />}
-              {introComplete && <Home />}
-            </>
-          ),
-        },
         { path: 'about', element: <About /> },
         {
           path: 'team',
@@ -76,6 +78,7 @@ const App = () => {
         },
         { path: 'sponsor', element: <Sponsor /> },
         { path: 'contact', element: <Contact /> },
+        { path: '*', element: <NotFound /> } // 404 fallback
       ],
     },
   ]);
