@@ -1,29 +1,47 @@
-// pages/Home.jsx
 import React, { useRef, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Anchor, Droplets, Waves } from "lucide-react";
-
 import Timeline from "../components/Home/Timeline";
 import Goals from "../components/Home/Goals";
 import TeamIntro from "../components/Home/TeamIntro";
-
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
 export default function Home() {
   const [firstEnded, setFirstEnded] = useState(false);
   const [loopStarted, setLoopStarted] = useState(false);
   const videoRef = useRef(null);
 
+  // Typing animation states
   const texts = ["Hydrojan", "AUV System", "Underwater Explorer"];
   const typingSpeed = 150;
   const erasingSpeed = 100;
   const pauseBeforeErase = 1500;
   const pauseBeforeType = 200;
-
   const [textIndex, setTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [displayedText, setDisplayedText] = useState("");
 
+  // ----- Handle animation only on first page load -----
+  useEffect(() => {
+    const introShown = sessionStorage.getItem("hydrojan_intro_shown");
+    // This tells whether intro has run this session
+    if (introShown) {
+      setFirstEnded(true);
+      setLoopStarted(true);
+    } else {
+      // Change 6000 to 360000 for 6 minutes
+      const timer = setTimeout(() => {
+        setFirstEnded(true);
+        setLoopStarted(true);
+        sessionStorage.setItem("hydrojan_intro_shown", "true");
+      }, 9000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+  // ----------------------------------------------------
+
+  // Typing effect code
   useEffect(() => {
     let timer;
     const handleType = () => {
@@ -53,17 +71,7 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, textIndex]);
 
-  const handleVideoEnded = () => {
-    setFirstEnded(true);
-    setTimeout(() => {
-      setLoopStarted(true);
-      if (videoRef.current) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play();
-      }
-    }, 250);
-  };
-
+  // Feature cards
   const features = [
     {
       title: "Deep Sea Exploration",
@@ -82,6 +90,7 @@ export default function Home() {
     },
   ];
 
+  // Animation variants
   const contentVariants = {
     hidden: { opacity: 0, y: 60, filter: "blur(16px)" },
     visible: {
@@ -112,7 +121,6 @@ export default function Home() {
       {firstEnded && (
         <header className="fixed top-0 left-0 w-full z-50">
           <Navbar />
-
         </header>
       )}
 
@@ -127,7 +135,6 @@ export default function Home() {
           muted
           playsInline
           loop={loopStarted}
-          onEnded={handleVideoEnded}
           style={{ pointerEvents: "none" }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0b0f]/80 to-[#0e1120]/85 z-10" />
@@ -190,31 +197,26 @@ export default function Home() {
           <section className="pt-24 pb-16 px-4 lg:px-0 bg-gradient-to-b from-[#0a0b0f] via-[#0e1120] to-[#10172e]">
             <TeamIntro />
           </section>
-
           <section className="pt-24 pb-16 px-4 lg:px-0 bg-gradient-to-b from-[#10172e] via-[#131a36] to-[#162040]">
             <Timeline />
           </section>
-
           <section className="pt-24 pb-16 px-4 lg:px-0 bg-gradient-to-b from-[#162040] via-[#182448] to-[#1a2750]">
             <Goals />
           </section>
-
           <footer className="bg-gradient-to-b from-[#1a2750] via-[#141a34] to-[#0e1120] py-8">
             <Footer />
           </footer>
-
         </>
       )}
 
-     <style>{`
-  .animate-blink {
-    animation: blink 1s step-start infinite;
-  }
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-`}</style>
-
+      <style>{`
+        .animate-blink {
+          animation: blink 1s step-start infinite;
+        }
+        @keyframes blink {
+          50% { opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }
