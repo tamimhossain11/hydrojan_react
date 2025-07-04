@@ -206,16 +206,15 @@ export default function Home() {
         </>
       )}
 
-      <style jsx>{`
-        .animate-blink {
-          animation: blink 1s step-start infinite;
-        }
-        @keyframes blink {
-          50% {
-            opacity: 0;
-          }
-        }
-      `}</style>
+     <style>{`
+  .animate-blink {
+    animation: blink 1s step-start infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+`}</style>
+
     </div>
   );
 }
