@@ -5,6 +5,7 @@ import { Anchor, Droplets, Waves } from "lucide-react";
 
 import Timeline from "../components/Home/Timeline";
 import Goals from "../components/Home/Goals";
+import TeamIntro from "../components/Home/TeamIntro";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -187,19 +188,26 @@ export default function Home() {
       </section>
 
       {/* TIMELINE & GOALS */}
-      {firstEnded && (
-        <>
-          <section className="z-10 pt-24 pb-16 px-4 lg:px-0 bg-[#0a0b0f]">
-            <Timeline />
-          </section>
-          <section className="z-10 pt-24 pb-16 px-4 lg:px-0 bg-[#0a0b0f]">
-            <Goals />
-          </section>
-          <footer className="bg-[#0e1120] py-8">
-            <Footer />
-          </footer>
-        </>
-      )}
+{firstEnded && (
+  <>
+    <section className="pt-24 pb-16 px-4 lg:px-0 bg-gradient-to-b from-[#0a0b0f] via-[#0e1120] to-[#10172e]">
+  <TeamIntro />
+</section>
+
+<section className="pt-24 pb-16 px-4 lg:px-0 bg-gradient-to-b from-[#10172e] via-[#131a36] to-[#162040]">
+  <Timeline />
+</section>
+
+<section className="pt-24 pb-16 px-4 lg:px-0 bg-gradient-to-b from-[#162040] via-[#182448] to-[#1a2750]">
+  <Goals />
+</section>
+
+<footer className="bg-gradient-to-b from-[#1a2750] via-[#141a34] to-[#0e1120] py-8">
+  <Footer />
+</footer>
+
+  </>
+)}
 
       <style jsx>{`
         .animate-blink {
