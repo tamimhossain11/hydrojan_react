@@ -32,20 +32,22 @@ export default function TeamIntro() {
         </motion.div>
 
         <motion.div
-          className="lg:w-1/2 w-full"
+          className="lg:w-1/2 w-full relative overflow-hidden rounded-3xl shadow-2xl backdrop-blur-lg bg-white/20 border border-cyan-200/40"
           initial={{ opacity: 0, x: 80 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.3, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <video
-            className="w-full h-auto rounded-3xl shadow-2xl backdrop-blur-lg bg-white/20 border border-cyan-200/40"
-            src="/video/3.mp4"
-            controls
-            playsInline
-            preload="metadata"
-            poster="/Image/thumb.jpeg"
-          />
+          <div className="aspect-video relative">
+            <iframe
+              src="https://www.youtube.com/embed/z0UIQMQ7qM0?si=f8i9aJOnO53G5Cfe"
+              title="Team DoB Hydrojan YouTube Video"
+              className="absolute inset-0 w-full h-full rounded-3xl bg-black/30 backdrop-blur-md"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-transparent via-white/10 to-transparent rounded-3xl" />
+          </div>
         </motion.div>
       </motion.div>
     </section>
