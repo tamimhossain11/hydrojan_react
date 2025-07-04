@@ -121,7 +121,7 @@ export default function Home() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/video/bg-video.mp4"
+          src="/video/bg.mp4"
           poster="/video/bg-poster.jpg"
           autoPlay
           muted
