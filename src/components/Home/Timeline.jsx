@@ -13,7 +13,7 @@ const workflows = [
       "Computational Fluid Dynamics",
       "Buoyancy & Stability Calculations"
     ],
-    period: "2023 - Present",
+    period: "2024 - Present",
     tag: "View Details"
   },
   {
@@ -26,7 +26,7 @@ const workflows = [
       "CNC Machined Components",
       "Elastic Sealant Application"
     ],
-    period: "2023 - Present",
+    period: "2024 - Present",
     tag: "View Details"
   },
   {
@@ -39,7 +39,7 @@ const workflows = [
       "Multi-Sensor Integration",
       "Fail-Safe Emergency Systems"
     ],
-    period: "2023 - Present",
+    period: "2024 - Present",
     tag: "View Details"
   },
   {
@@ -52,7 +52,7 @@ const workflows = [
       "Real-Time Localization",
       "MAVLink Communication Stack"
     ],
-    period: "2023 - Present",
+    period: "2024 - Present",
     tag: "View Details"
   },
   {
@@ -65,7 +65,7 @@ const workflows = [
       "Engineering Change Management",
       "System Integration Records"
     ],
-    period: "2023 - Present",
+    period: "2024 - Present",
     tag: "View Details"
   }
 ];
