@@ -7,7 +7,7 @@ const AboutHero = () => {
   return (
     <div className="relative h-[500px] w-full text-white fish-cursor overflow-hidden">
       {/* 🌊 Background Layer */}
-      <div className="absolute inset-0 z-0 bg-[url('/image/auv-bg.gif')] bg-cover bg-center opacity-10 blur-sm"></div>
+      <div className="absolute inset-0 z-0 bg-[url('/image/auv-bg.png')] bg-cover bg-center opacity-10 blur-sm"></div>
 
       {/* 🧾 Foreground Content */}
       <div className="relative z-10 container mx-auto h-full px-4 flex flex-col justify-center items-start text-left">

@@ -136,12 +136,28 @@ const members = [
     company: "DOB HYDROJAN",
     department: "Department of Software"
   },
+  {
+    name: "MD Naieem Hossen",
+    designation: "(Software Team Member)",
+    id: 16,
+    thumb: "Ahan.jpg",
+    company: "DOB HYDROJAN",
+    department: "Department of Software"
+  },
+  {
+    name: "Nimeur Rahman (Ahsan Naim)",
+    designation: "(Software Team Member)",
+    id: 17,
+    thumb: "Naem.jpg",
+    company: "DOB HYDROJAN",
+    department: "Department of Software"
+  },
 
   // Website Department
   {
     name: "Tamim Hossain",
     designation: "(Website Lead)",
-    id: 16,
+    id: 18,
     thumb: "tamim.JPG",
     company: "DOB HYDROJAN",
     department: "Department of Website"
@@ -149,7 +165,7 @@ const members = [
   {
     name: "Mahadi Hassan Shurov",
     designation: "(Website Co-lead)",
-    id: 17,
+    id: 19,
     thumb: "mahadi.jpg",
     company: "DOB HYDROJAN",
     department: "Department of Website"
@@ -159,7 +175,7 @@ const members = [
   {
     name: "Humayra Afia",
     designation: "(Documentation Lead)",
-    id: 18,
+    id: 20,
     thumb: "humayra.JPG",
     company: "DOB HYDROJAN",
     department: "Department of Documentation"
@@ -167,7 +183,7 @@ const members = [
   {
     name: "Shubhadipa Das",
     designation: "(Documentation Team Member)",
-    id: 19,
+    id: 21,
     thumb: "Shubhadipa.jpg",
     company: "DOB HYDROJAN",
     department: "Department of Documentation"
@@ -177,7 +193,7 @@ const members = [
   {
     name: "Safin Ahmed",
     designation: "(Operations Lead)",
-    id: 20,
+    id: 22,
     thumb: "safin.JPG",
     company: "DOB HYDROJAN",
     department: "Department of Operations"
@@ -185,7 +201,7 @@ const members = [
   {
     name: "Sayed Sorower Zahan Nipun",
     designation: "(Operations Team Member)",
-    id: 21,
+    id: 23,
     thumb: "Sorower.jpg",
     company: "DOB HYDROJAN",
     department: "Department of Operations"
@@ -193,7 +209,7 @@ const members = [
   {
     name: "Tashrif Tamim",
     designation: "(Operations Team Member)",
-    id: 22,
+    id: 24,
     thumb: "Tashrif.jpg",
     company: "DOB HYDROJAN",
     department: "Department of Operations"
@@ -201,7 +217,7 @@ const members = [
   {
     name: "S M Mohsin",
     designation: "(Operations Team Member)",
-    id: 23,
+    id: 25,
     thumb: "Mohsin.jpg",
     company: "DOB HYDROJAN",
     department: "Department of Operations"
@@ -211,7 +227,7 @@ const members = [
   {
     name: "S M Uday Haider",
     designation: "(R&D Lead)",
-    id: 24,
+    id: 26,
     thumb: "uday.JPG",
     company: "DOB HYDROJAN",
     department: "Research and Development"
@@ -219,7 +235,7 @@ const members = [
   {
     name: "Alif Zahan Prachurja",
     designation: "(Team Manager)",
-    id: 25,
+    id: 27,
     thumb: "alif.JPG",
     company: "DOB HYDROJAN",
     department: "Management"
@@ -227,7 +243,7 @@ const members = [
   {
     name: "Jahid Hasan Romel",
     designation: "(Team Member)",
-    id: 26,
+    id: 28,
     thumb: "Romel.jpg",
     company: "DOB HYDROJAN",
     department: "Management"
