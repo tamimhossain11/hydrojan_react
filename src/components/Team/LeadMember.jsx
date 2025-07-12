@@ -140,7 +140,7 @@ const members = [
     name: "MD Naieem Hossen",
     designation: "(Software Team Member)",
     id: 16,
-    thumb: "Ahan.jpg",
+    thumb: "Ahan.JPG",
     company: "DOB HYDROJAN",
     department: "Department of Software"
   },
@@ -148,7 +148,7 @@ const members = [
     name: "Nimeur Rahman (Ahsan Naim)",
     designation: "(Software Team Member)",
     id: 17,
-    thumb: "Naem.jpg",
+    thumb: "Naem.JPG",
     company: "DOB HYDROJAN",
     department: "Department of Software"
   },
