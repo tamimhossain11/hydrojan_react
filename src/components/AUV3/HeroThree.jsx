@@ -14,7 +14,7 @@ const keywords = [
 
 const HeroThree = () => {
   return (
-    <section className="w-full bg-black text-white px-6 py-20">
+    <section className="w-full text-white px-6 py-20 ">
       <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center gap-16">
         {/* Right Side Keywords */}
         <motion.div

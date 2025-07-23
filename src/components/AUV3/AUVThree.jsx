@@ -106,7 +106,7 @@ const features = [
 
 const AUVThree = () => {
   return (
-    <section className="w-full px-20 py-20 bg-gradient-to-b from-black via-blue-950 to-black text-white space-y-32">
+    <section className="w-full px-20 py-20  text-white space-y-32">
       {features.map((feature, index) => (
         <motion.div
           key={index}

@@ -46,7 +46,16 @@ const OutReachBlog = () => {
         />
 
         <p>
-          <strong>Mahadir Islam Wafi</strong>, team leader of HydroJan, kicked off the session with the story of <em>Dreams of Bangladesh</em> and the creation of HydroJan. He introduced the basics of AUVs and ROVs, and their relevance to the RoboSub competition and beyond.
+        <strong>
+            <a
+              href="https://www.mahadirislamwafi.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 underline hover:text-blue-300"
+            >
+              Mahadir Islam Wafi
+            </a>
+          </strong>, team leader of HydroJan, kicked off the session with the story of <em>Dreams of Bangladesh</em> and the creation of HydroJan. He introduced the basics of AUVs and ROVs, and their relevance to the RoboSub competition and beyond.
         </p>
 
         {/* ✅ New Mahadi Hasan Shurov Section */}
