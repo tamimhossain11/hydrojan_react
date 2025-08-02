@@ -48,7 +48,7 @@ const members = [
     name: "Md Sunjim Hossain",
     designation: "(Mechanical Team Member)",
     id: 6,
-    thumb: "Tashrif.jpg",
+    thumb: "Sunjim.jpg",
     company: "DOB HYDROJAN",
     department: "Department of Mechanical"
   },
