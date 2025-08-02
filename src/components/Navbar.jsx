@@ -60,6 +60,24 @@ const Navbar = () => {
     setActiveDropdown(prev => prev === index ? null : index);
   }, []);
 
+  // Keyboard shortcut for search
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Cmd/Ctrl + K to open search
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+      // Escape to close search
+      if (e.key === 'Escape' && searchOpen) {
+        setSearchOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [searchOpen]);
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -161,11 +179,15 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <motion.button
             onClick={() => setSearchOpen(true)}
-            className="p-2 rounded-full hover:bg-white/10 transition-colors"
+            className="p-2 rounded-full hover:bg-white/10 transition-colors group relative"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            title="Search (⌘K)"
           >
             <Search size={18} className="text-white" />
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+              ⌘K
+            </div>
           </motion.button>
           <motion.button
             onClick={() => setMenuOpen(!menuOpen)}
