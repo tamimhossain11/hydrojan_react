@@ -28,7 +28,7 @@ const Sponsor = () => {
         >
           <h1 className="text-4xl md:text-5xl font-bold text-yellow-400 flex items-center justify-center gap-3">
             <Droplet className="text-yellow-300" size={32} />
-            Gold Sponsor
+            Powered By
           </h1>
 
           <motion.img
@@ -104,7 +104,7 @@ const Sponsor = () => {
           className="space-y-10"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-cyan-400">
-            Robotics Component Partners
+           Sponsored By
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
