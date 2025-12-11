@@ -125,15 +125,23 @@ export default function Home() {
 
       {/* HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <video
+        <iframe
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          src="/video/hydrojan.mp4"
-          autoPlay
-          muted
-          playsInline
-          loop
-          style={{ pointerEvents: "none" }}
+          className="absolute inset-0 w-full h-full z-0"
+          src="https://www.youtube.com/embed/fVlYFV3TVe8?autoplay=1&mute=1&loop=1&playlist=fVlYFV3TVe8&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+          title="Background Video"
+          allow="autoplay; encrypted-media"
+          style={{ 
+            pointerEvents: "none",
+            width: "100vw",
+            height: "56.25vw", // 16:9 aspect ratio
+            minHeight: "100vh",
+            minWidth: "177.77vh", // 16:9 aspect ratio
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)"
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0b0f]/80 to-[#0e1120]/85 z-10" />
 
